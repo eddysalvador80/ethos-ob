@@ -8,12 +8,23 @@ self.addEventListener('activate', e => {
 });
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
-  e.respondWith(
-    caches.match(e.request).then(r => r || fetch(e.request).then(resp => {
-      if (resp && resp.ok && e.request.url.indexOf(self.location.origin) === 0) {
-        const cp = resp.clone(); caches.open(CACHE).then(c => c.put(e.request, cp));
-      }
-      return resp;
-    }).catch(() => caches.match('./index.html')))
-  );
+  const req = e.request;
+  const isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').indexOf('text/html') !== -1;
+  if (isHTML) {
+    // network-first: la app se actualiza sola cuando hay internet; cae al cache si está offline
+    e.respondWith(
+      fetch(req).then(resp => {
+        if (resp && resp.ok) { const cp = resp.clone(); caches.open(CACHE).then(c => c.put('./index.html', cp)); }
+        return resp;
+      }).catch(() => caches.match('./index.html').then(r => r || caches.match('./')))
+    );
+  } else {
+    // cache-first para estáticos (íconos, manifest)
+    e.respondWith(
+      caches.match(req).then(r => r || fetch(req).then(resp => {
+        if (resp && resp.ok && req.url.indexOf(self.location.origin) === 0) { const cp = resp.clone(); caches.open(CACHE).then(c => c.put(req, cp)); }
+        return resp;
+      }).catch(() => caches.match('./index.html')))
+    );
+  }
 });
