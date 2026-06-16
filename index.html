@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a1714">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="ETHOS·OB">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-180.png">
 <title>ETHOS·OB — Apoyo a la decisión anestésica en cirugía no obstétrica durante el embarazo</title>
 <style>
 :root{
@@ -579,12 +586,28 @@ body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--b
       <div class="logo">ETHOS<span>·</span>OB</div>
       <div class="logo-sub">Apoyo a la decisión anestésica · Cirugía no obstétrica en embarazo · Lumina Health AI SpA · v2.7</div>
     </div>
-    <div style="display:flex;align-items:center;gap:16px">
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="emerg-btn" onclick="abrirInstalar()" title="Descargar o instalar la app" style="background:#0f6e56;border-color:#0f6e56">⬇ Guardar / Instalar</button>
       <button class="emerg-btn" onclick="abrirEmergencia()" title="Ayudas cognitivas de crisis">🚨 Emergencia</button>
       <div class="header-meta">HHHA · Temuco, Chile<br>Compilado: 2026-06-14 · v2.7<br>© Lumina Health AI SpA</div>
     </div>
   </div>
 </header>
+
+<!-- ═══════════ GUARDAR / INSTALAR — descarga offline + PWA ═══════════ -->
+<div id="instalar-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)cerrarInstalar()">
+  <div style="background:#fff;border-radius:14px;max-width:440px;width:100%;padding:24px;box-shadow:0 12px 40px rgba(0,0,0,.3)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <div style="font-family:Georgia,serif;font-size:19px;font-weight:700;color:#1a1714">Guardar o instalar ETHOS·OB</div>
+      <button onclick="cerrarInstalar()" style="background:none;border:none;font-size:18px;cursor:pointer;color:#888">✕</button>
+    </div>
+    <div style="font-size:13px;color:#666;line-height:1.6;margin-bottom:16px">Funciona <strong>sin internet</strong> una vez guardada. Elige cómo la quieres usar:</div>
+    <button onclick="descargarApp()" style="width:100%;padding:13px;margin-bottom:10px;background:#0f6e56;color:#fff;border:none;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer">⬇ Descargar el archivo (usar sin internet)</button>
+    <div style="font-size:11.5px;color:#888;margin:-4px 0 16px;line-height:1.5">Se guarda un archivo <code>.html</code>. Ábrelo con doble clic en cualquier computador, sin internet. Ideal para enviar por correo o WhatsApp.</div>
+    <button id="btn-instalar-pwa" onclick="instalarApp()" style="width:100%;padding:13px;margin-bottom:8px;background:#1a1714;color:#fff;border:none;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer">📱 Instalar como app (ícono en pantalla)</button>
+    <div id="instalar-ayuda" style="font-size:11.5px;color:#888;line-height:1.6"></div>
+  </div>
+</div>
 
 <!-- ═══════════ MODO EMERGENCIA — ayudas cognitivas de crisis ═══════════ -->
 <div class="emerg-overlay" id="emergencia-overlay" style="display:none">
@@ -5146,6 +5169,70 @@ Storage.prototype.setItem = function(key, value) {
 
 console.log('[ETHOS] Protecciones anti-copia y anti-ingeniería activadas');
 
+</script>
+
+<script>
+// ── GUARDAR / INSTALAR (PWA + descarga offline) ──
+(function(){
+  // Registrar service worker (solo cuando se sirve por http/https con sw.js disponible; en file:// no hace nada)
+  if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+    window.addEventListener('load', function(){ navigator.serviceWorker.register('./sw.js').catch(function(){}); });
+  }
+  var deferredPrompt = null;
+  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferredPrompt = e; });
+  window.__deferredPrompt = function(){ return deferredPrompt; };
+  window.__clearPrompt = function(){ deferredPrompt = null; };
+})();
+
+function abrirInstalar(){
+  var ov = document.getElementById('instalar-overlay'); if(!ov) return;
+  ov.style.display = 'flex';
+  // adaptar el botón/ayuda de instalación según el dispositivo
+  var ua = navigator.userAgent || '';
+  var esIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  var btn = document.getElementById('btn-instalar-pwa');
+  var ayuda = document.getElementById('instalar-ayuda');
+  if (standalone) {
+    if(btn) btn.style.display = 'none';
+    ayuda.innerHTML = '✓ Ya estás usando ETHOS·OB como app instalada.';
+  } else if (esIOS) {
+    if(btn) btn.style.display = 'none';
+    ayuda.innerHTML = '📱 <strong>En iPhone/iPad:</strong> toca el botón <strong>Compartir</strong> (el cuadrado con la flecha ↑) y luego <strong>«Agregar a inicio»</strong>. Quedará con su ícono, a pantalla completa.';
+  } else if (window.__deferredPrompt && window.__deferredPrompt()) {
+    if(btn) btn.style.display = 'block';
+    ayuda.innerHTML = 'Quedará con ícono propio y se abrirá a pantalla completa, sin la barra del navegador.';
+  } else {
+    if(btn) btn.style.display = 'none';
+    ayuda.innerHTML = '💻 <strong>En Chrome/Edge:</strong> usa el ícono de instalar (un monitor con ↓) en la barra de direcciones, o el menú ⋮ → <strong>«Instalar ETHOS·OB»</strong>. Si no aparece, usa el botón de descarga de arriba.';
+  }
+}
+function cerrarInstalar(){ var ov = document.getElementById('instalar-overlay'); if(ov) ov.style.display = 'none'; }
+
+function descargarApp(){
+  function bajar(html){
+    try {
+      var blob = new Blob([html], {type:'text/html;charset=utf-8'});
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'ETHOS-OB-v2.7.html';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+    } catch(e){ var l=document.createElement('a'); l.href='index.html'; l.download='ETHOS-OB-v2.7.html'; l.click(); }
+  }
+  fetch(location.href, {cache:'no-store'}).then(function(r){ return r.text(); }).then(bajar)
+    .catch(function(){ var l=document.createElement('a'); l.href='index.html'; l.download='ETHOS-OB-v2.7.html'; l.click(); });
+}
+
+function instalarApp(){
+  var dp = window.__deferredPrompt && window.__deferredPrompt();
+  if (dp) {
+    dp.prompt();
+    dp.userChoice.finally(function(){ window.__clearPrompt(); cerrarInstalar(); });
+  } else {
+    var ayuda = document.getElementById('instalar-ayuda');
+    if(ayuda) ayuda.innerHTML = 'Tu navegador no ofrece la instalación automática aquí. Usa el botón de <strong>descarga</strong> de arriba, o el menú del navegador → «Instalar».';
+  }
+}
 </script>
 
 </body>
