@@ -423,7 +423,7 @@ body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--b
   @page{margin:18mm 15mm;size:A4 portrait}
 }
 
-/* ═══════════ MODO RÁPIDO — orientación en vivo (v2.7) ═══════════ */
+/* ═══════════ MODO RÁPIDO — orientación en vivo (v2.8) ═══════════ */
 .quick-card{background:var(--surface);border:1.5px solid var(--ink);border-radius:12px;margin-bottom:24px;box-shadow:var(--sh2);overflow:hidden}
 .quick-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--ink);color:#fff}
 .quick-title{font-size:15px;font-weight:600;display:flex;align-items:center;gap:9px}
@@ -468,7 +468,7 @@ body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--b
 .quick-note{font-size:11px;color:var(--ink3);flex:1;min-width:170px;line-height:1.5}
 @media(max-width:768px){.quick-grid{grid-template-columns:1fr}.quick-actions .btn{width:100%}.quick-note{text-align:center}}
 
-/* ═══════════ MODO DOCENTE (v2.7) ═══════════ */
+/* ═══════════ MODO DOCENTE (v2.8) ═══════════ */
 .doc-intro{font-size:12px;color:var(--ink3);background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:18px;line-height:1.6}
 .doc-escala{border:1.5px solid var(--amber2);border-left:5px solid var(--amber2);border-radius:0 8px 8px 0;background:#fff8e6;padding:14px 16px;margin-bottom:18px}
 .doc-escala-head{font-size:14px;font-weight:700;color:#6b3600;margin-bottom:6px;display:flex;align-items:center;gap:8px}
@@ -575,6 +575,23 @@ body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--b
 .tx-ref{font-family:Consolas,monospace;font-size:10px;color:var(--blue);text-decoration:none;white-space:nowrap}
 .tx-ref:hover{text-decoration:underline}
 .tx-nota{font-size:11px;color:var(--ink3);line-height:1.55;border-top:1px solid var(--border2);padding-top:9px}
+/* ── Referencia (paso 5) ── */
+.glo-search{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:.95rem;background:var(--surface);color:var(--ink);margin-bottom:6px;outline:none}
+.glo-search:focus{border-color:var(--accent)}
+.glo-hint{font-size:.74rem;color:var(--ink3);margin:0 0 12px}
+.glo-group{margin-bottom:18px}
+.secn{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--gold);padding-bottom:4px;border-bottom:1.5px solid var(--border2);margin-bottom:7px}
+.gl-item{padding:9px 2px;border-bottom:1px solid var(--border2);font-size:.87rem;line-height:1.55}
+.gl-item b{color:var(--accent)}
+.gl-refs{font-size:.74rem;color:var(--ink3);margin-top:4px}
+.gl-refs .srclink{color:var(--blue);text-decoration:none;margin-right:2px}
+.gl-refs .srclink:hover{text-decoration:underline}
+.ref-badge{font-size:.6rem;padding:1px 5px;border-radius:999px;margin-left:2px;vertical-align:middle;font-weight:600}
+.rb-free{background:#e8f3ea;color:#3c7a4e}
+.rb-pay{background:#fbf0d8;color:#9a6b12}
+.subtabs{display:flex;gap:8px;margin:0 0 16px}
+.subtab{flex:1 1 0;border:1.5px solid var(--border);background:var(--surface);border-radius:9px;padding:10px 8px;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--ink3);transition:all .15s;font-family:inherit}
+.subtab.sel{border-color:var(--accent);background:#fdf3f2;color:var(--accent)}
 </style>
 
 </head>
@@ -584,12 +601,12 @@ body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--b
   <div class="header-inner">
     <div>
       <div class="logo">ETHOS<span>·</span>OB</div>
-      <div class="logo-sub">Apoyo a la decisión anestésica · Cirugía no obstétrica en embarazo · Lumina Health AI SpA · v2.7</div>
+      <div class="logo-sub">Apoyo a la decisión anestésica · Cirugía no obstétrica en embarazo · Lumina Health AI SpA · v2.8</div>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
       <button class="emerg-btn" onclick="abrirInstalar()" title="Descargar o instalar la app" style="background:#0f6e56;border-color:#0f6e56">⬇ Guardar / Instalar</button>
       <button class="emerg-btn" onclick="abrirEmergencia()" title="Ayudas cognitivas de crisis">🚨 Emergencia</button>
-      <div class="header-meta">HHHA · Temuco, Chile<br>Compilado: 2026-06-14 · v2.7<br>© Lumina Health AI SpA</div>
+      <div class="header-meta">HHHA · Temuco, Chile<br>Compilado: 2026-06-14 · v2.8<br>© Lumina Health AI SpA</div>
     </div>
   </div>
 </header>
@@ -630,6 +647,8 @@ body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--b
   <button class="step-btn" id="btn-step2" onclick="goTo(2)"><span class="step-num">2</span>Evaluación y alertas</button>
   <button class="step-btn" id="btn-step3" onclick="goTo(3)"><span class="step-num">3</span>Resumen imprimible</button>
   <button class="step-btn" id="btn-step4" onclick="goTo(4)"><span class="step-num">4</span>Modo docente</button>
+  <button class="step-btn" id="btn-step5" onclick="goTo(5)"><span class="step-num">5</span>📖 Referencia</button>
+  <button class="step-btn" id="btn-step6" onclick="goTo(6)"><span class="step-num">6</span>🏥 Herramientas Cesárea</button>
 </nav>
 
 <!-- ═══════════════ VISTA 1: DATOS ═══════════════ -->
@@ -930,7 +949,7 @@ body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--b
           <label class="check-item"><input type="checkbox" id="sint-obstruccion"><span>Obstrucción intestinal (sospecha o confirmada)</span></label>
           <label class="check-item"><input type="checkbox" id="sint-reflujo-severo"><span>Reflujo gastroesofágico severo activo / hernia hiatal conocida</span></label>
         </div>
-        <label class="check-item" style="margin-top:7px"><input type="checkbox" id="glp1"><span>Usa <strong>agonista GLP-1</strong> (semaglutida, tirzepatida, liraglutida, dulaglutida) — retrasa el vaciamiento gástrico → riesgo de estómago lleno pese al ayuno</span></label>
+        <label class="check-item" style="margin-top:7px"><input type="checkbox" id="glp1"><span>Usa <strong>agonista GLP-1</strong> (semaglutida, tirzepatida, liraglutida, dulaglutida) — tratar como gastroparesia-equivalente (guía AGA/ASA 2024: no suspender de rutina, no cancelar)</span></label>
         <div style="margin-top:6px;font-size:10px;color:var(--ink3);font-family:Consolas,monospace">ASA 2017 · OAA/DAS 2015 · BJA Educ 2023: cualquier síntoma digestivo activo = estómago no vacío = ISR obligatoria</div>
       </div>
     </div>
@@ -1209,6 +1228,327 @@ body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--b
   <div class="form-actions" style="justify-content:space-between">
     <button class="btn btn-secondary" onclick="goTo(2)">← Evaluación</button>
     <button class="btn btn-primary" onclick="goTo(3)">Resumen imprimible →</button>
+  </div>
+</div>
+
+<div class="view" id="view-5">
+  <div class="section-title">📖 Referencia</div>
+  <div class="section-desc">Temario completo de la app con link a cada paper que lo respalda. Siglas para orientarse al vuelo.</div>
+  <div class="subtabs">
+    <button class="subtab sel" id="ref5-sub-temario" onclick="setRefSubOb('temario')">📚 Temario</button>
+    <button class="subtab" id="ref5-sub-siglas" onclick="setRefSubOb('siglas')">🔤 Siglas</button>
+  </div>
+  <input class="glo-search" id="ref5-search" type="search" placeholder="Buscar tema o sigla…" oninput="filtrarRefOb()" />
+  <p class="glo-hint">Haz clic en cualquier referencia para abrir el paper original.</p>
+  <div id="ref5-body"></div>
+  <div class="form-actions" style="justify-content:flex-start;margin-top:24px">
+    <button class="btn btn-secondary" onclick="goTo(4)">← Modo docente</button>
+  </div>
+</div>
+
+<!-- ═══════════════ VISTA 6: HERRAMIENTAS CESÁREA & POSTPARTO ═══════════════ -->
+<div class="view" id="view-6">
+
+  <!-- HOME GRID -->
+  <div id="hrr-home">
+    <div class="section-title">🏥 Herramientas Cesárea &amp; Postparto</div>
+    <div class="section-desc">Calculadoras clínicas independientes. No requieren rellenar el formulario de caso completo — activan en 1 clic.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:24px">
+      <div class="action-card" style="cursor:pointer;border:1.5px solid var(--border);transition:box-shadow .15s" onmouseenter="this.style.boxShadow='var(--sh2)'" onmouseleave="this.style.boxShadow=''" onclick="openHrr('atb')">
+        <div class="action-kicker">💊 Profilaxis</div>
+        <div style="font-family:Georgia,serif;font-size:16px;font-weight:700;margin-bottom:6px;color:var(--ink)">ATB Cesárea</div>
+        <div class="action-text">Cefazolina 2g / 3g por peso. Estratificación alergia PNC en 3 ramas. Redosing &gt;4h.</div>
+      </div>
+      <div class="action-card" style="cursor:pointer;border:1.5px solid var(--border);transition:box-shadow .15s" onmouseenter="this.style.boxShadow='var(--sh2)'" onmouseleave="this.style.boxShadow=''" onclick="openHrr('hip')">
+        <div class="action-kicker">💧 Vasopresor</div>
+        <div style="font-family:Georgia,serif;font-size:16px;font-weight:700;margin-bottom:6px;color:var(--ink)">Hipotensión Neuroaxial</div>
+        <div class="action-text">Umbral TAS individualizado. NE titulada vs. fenilefrina. Dosis calculadas por peso.</div>
+      </div>
+      <div class="action-card" style="cursor:pointer;border:1.5px solid var(--border);transition:box-shadow .15s" onmouseenter="this.style.boxShadow='var(--sh2)'" onmouseleave="this.style.boxShadow=''" onclick="openHrr('anal')">
+        <div class="action-kicker">💊 Analgesia</div>
+        <div style="font-family:Georgia,serif;font-size:16px;font-weight:700;margin-bottom:6px;color:var(--ink)">Analgesia Postop</div>
+        <div class="action-text">Bifurcación embarazo / puerperio. Gate AINEs por trimestre. Primera línea por contexto.</div>
+      </div>
+      <div class="action-card" style="cursor:pointer;border:1.5px solid var(--border);transition:box-shadow .15s" onmouseenter="this.style.boxShadow='var(--sh2)'" onmouseleave="this.style.boxShadow=''" onclick="openHrr('pdph')">
+        <div class="action-kicker">🩹 Complicación</div>
+        <div style="font-family:Georgia,serif;font-size:16px;font-weight:700;margin-bottom:6px;color:var(--ink)">PDPH</div>
+        <div class="action-text">Escalera farmacológica. EBP: cuándo y cuánto (20 mL). Red flags que obligan neuroimagen.</div>
+      </div>
+      <div class="action-card" style="cursor:pointer;border:1.5px solid var(--border);transition:box-shadow .15s" onmouseenter="this.style.boxShadow='var(--sh2)'" onmouseleave="this.style.boxShadow=''" onclick="openHrr('fetal')">
+        <div class="action-kicker">👶 Monitoreo</div>
+        <div style="font-family:Georgia,serif;font-size:16px;font-weight:700;margin-bottom:6px;color:var(--ink)">Monitoreo Fetal Intraop.</div>
+        <div class="action-text">EG ≥22 sem. Interpretación CTG silente bajo AG. Resucitación intrauterina. Postop 48h.</div>
+      </div>
+      <div class="action-card" style="cursor:pointer;border:1.5px solid var(--border);transition:box-shadow .15s" onmouseenter="this.style.boxShadow='var(--sh2)'" onmouseleave="this.style.boxShadow=''" onclick="openHrr('vad')">
+        <div class="action-kicker">🫁 Vía Aérea</div>
+        <div style="font-family:Georgia,serif;font-size:16px;font-weight:700;margin-bottom:6px;color:var(--ink)">VAD Obstétrica</div>
+        <div class="action-text">Árbol rescate post-RSI fallida. VL → VL+bronco → SAD 2ª gen → FONA.</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--ink3);font-family:Consolas,monospace;padding:10px 14px;background:var(--surface2);border-radius:6px;line-height:1.8">
+      Fuentes: Bratzler 2013 · Pevzner 2011 · Wassef 2026 · Ngan Kee 2018 · Hasanin 2019 · Liu 2022 · Uppal 2024 · Thon 2024 · Paech 2011 · Marhofer 2021 · Po 2019 · OAA/DAS 2015 · Maxwell 2024
+    </div>
+  </div>
+
+  <!-- ── ATB ── -->
+  <div id="hrr-atb" style="display:none">
+    <button class="btn btn-secondary" style="margin-bottom:18px" onclick="closeHrr('atb')">← Herramientas</button>
+    <div class="section-title">💊 Profilaxis ATB — Cesárea</div>
+    <div class="section-desc">Cefazolina: 2 g si &lt;120 kg · 3 g si ≥120 kg. Estratificación de alergia a Penicilina en 3 ramas.</div>
+    <div class="form-block">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Peso actual (kg) <span class="req">*</span></label>
+          <input type="number" inputmode="decimal" class="form-input" id="atb-peso" placeholder="ej. 85" min="30" max="250" step="0.5">
+          <span class="field-hint">Peso del día, no pregestacional. Umbral: 120 kg.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Alergia a Penicilina <span class="req">*</span></label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="atb-alergia" id="atb-al-no" value="no"><label for="atb-al-no">No</label></div>
+            <div class="radio-opt warning"><input type="radio" name="atb-alergia" id="atb-al-leve" value="leve"><label for="atb-al-leve">Leve / incierta</label></div>
+            <div class="radio-opt danger"><input type="radio" name="atb-alergia" id="atb-al-sev" value="severa"><label for="atb-al-sev">Severa (anafilaxia)</label></div>
+          </div>
+          <span class="field-hint">Leve = urticaria / exantema / «no recuerda». Severa = anafilaxia / angioedema / broncoespasmo.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">¿Cirugía estimada &gt;4 h?</label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="atb-larga" id="atb-l-no" value="no" checked><label for="atb-l-no">No (&lt;4 h)</label></div>
+            <div class="radio-opt warning"><input type="radio" name="atb-larga" id="atb-l-si" value="si"><label for="atb-l-si">Sí (≥4 h)</label></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Timing respecto a incisión</label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="atb-timing" id="atb-t-ok" value="ok" checked><label for="atb-t-ok">30–60 min antes ✓</label></div>
+            <div class="radio-opt warning"><input type="radio" name="atb-timing" id="atb-t-urgen" value="urgen"><label for="atb-t-urgen">Emergencia — sin tiempo</label></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions" style="margin-top:14px;padding-top:14px"><button class="btn btn-primary" onclick="calcHrr('atb')">Calcular dosis →</button></div>
+    </div>
+    <div id="hrr-atb-out" style="display:none"></div>
+  </div>
+
+  <!-- ── HIPOTENSIÓN ── -->
+  <div id="hrr-hip" style="display:none">
+    <button class="btn btn-secondary" style="margin-bottom:18px" onclick="closeHrr('hip')">← Herramientas</button>
+    <div class="section-title">💧 Hipotensión Neuroaxial — Cesárea</div>
+    <div class="section-desc">Umbral TAS individualizado (80% de basal). Protocolo NE titulada o fenilefrina. Dosis calculadas por peso.</div>
+    <div class="form-block">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">TAS basal (mmHg) <span class="req">*</span></label>
+          <input type="number" inputmode="numeric" class="form-input" id="hip-tas" placeholder="ej. 120" min="60" max="220" step="1">
+          <span class="field-hint">Promedio 3 tomas sentada / decúbito antes del bloqueo</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">FC basal (lpm)</label>
+          <input type="number" inputmode="numeric" class="form-input" id="hip-fc" placeholder="ej. 80" min="30" max="160" step="1">
+          <span class="field-hint">Relevante para elegir vasopresor (FC &lt;70 → precaución con fenilefrina)</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Peso materno (kg)</label>
+          <input type="number" inputmode="decimal" class="form-input" id="hip-peso" placeholder="ej. 72" min="30" max="250" step="0.5">
+          <span class="field-hint">Para modalidad por peso de NE y ED50/ED90 de fenilefrina</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Técnica anestésica</label>
+          <div class="radio-group">
+            <div class="radio-opt"><input type="radio" name="hip-tecnica" id="hip-t-esp" value="espinal" checked><label for="hip-t-esp">Espinal</label></div>
+            <div class="radio-opt"><input type="radio" name="hip-tecnica" id="hip-t-cse" value="cse"><label for="hip-t-cse">CSE</label></div>
+          </div>
+          <span class="field-hint">CSE activa cálculo ED50/ED90 de fenilefrina (solo válido con bupi hiperbárica 10 mg + sufentanilo 5 mcg)</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">¿NE disponible en el centro?</label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="hip-ne" id="hip-ne-si" value="si" checked><label for="hip-ne-si">Sí</label></div>
+            <div class="radio-opt"><input type="radio" name="hip-ne" id="hip-ne-no" value="no"><label for="hip-ne-no">No — usar fenilefrina</label></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions" style="margin-top:14px;padding-top:14px"><button class="btn btn-primary" onclick="calcHrr('hip')">Calcular protocolo →</button></div>
+    </div>
+    <div id="hrr-hip-out" style="display:none"></div>
+  </div>
+
+  <!-- ── ANALGESIA ── -->
+  <div id="hrr-anal" style="display:none">
+    <button class="btn btn-secondary" style="margin-bottom:18px" onclick="closeHrr('anal')">← Herramientas</button>
+    <div class="section-title">💊 Analgesia Postoperatoria — Embarazada &amp; Puérpera</div>
+    <div class="section-desc">Bifurcación obligatoria embarazo / puerperio. Los fármacos de primera línea se invierten entre ambos contextos: AINEs bloqueados en SG ≥27 sem, pero primera línea en puerperio.</div>
+    <div class="form-block">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">Contexto clínico <span class="req">*</span></label>
+          <div class="radio-group">
+            <div class="radio-opt warning"><input type="radio" name="anal-ctx" id="anal-c-emb" value="embarazo" onchange="toggleAnalEG()"><label for="anal-c-emb">Embarazo activo (cirugía no obstétrica)</label></div>
+            <div class="radio-opt safe"><input type="radio" name="anal-ctx" id="anal-c-puer" value="puerperio" onchange="toggleAnalEG()"><label for="anal-c-puer">Puerperio / posparto inmediato</label></div>
+          </div>
+        </div>
+        <div class="form-group" id="anal-eg-box" style="display:none">
+          <label class="form-label">Semana gestacional (SG) <span class="req">*</span></label>
+          <input type="number" inputmode="numeric" class="form-input" id="anal-eg" placeholder="ej. 22" min="4" max="42" step="1">
+          <span class="field-hint">Determina trimestre y disponibilidad de AINEs</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Intensidad del dolor (EVA 0–10) <span class="req">*</span></label>
+          <input type="number" inputmode="numeric" class="form-input" id="anal-eva" placeholder="ej. 7" min="0" max="10" step="1">
+        </div>
+        <div class="form-group">
+          <label class="form-label">¿Lactando actualmente?</label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="anal-lact" id="anal-l-no" value="no" checked><label for="anal-l-no">No / No aplica</label></div>
+            <div class="radio-opt warning"><input type="radio" name="anal-lact" id="anal-l-si" value="si"><label for="anal-l-si">Sí (lactancia)</label></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions" style="margin-top:14px;padding-top:14px"><button class="btn btn-primary" onclick="calcHrr('anal')">Ver recomendación →</button></div>
+    </div>
+    <div id="hrr-anal-out" style="display:none"></div>
+  </div>
+
+  <!-- ── PDPH ── -->
+  <div id="hrr-pdph" style="display:none">
+    <button class="btn btn-secondary" style="margin-bottom:18px" onclick="closeHrr('pdph')">← Herramientas</button>
+    <div class="section-title">🩹 PDPH — Cefalea Postpunción Dural</div>
+    <div class="section-desc">Red flags → diagnóstico → escalera farmacológica → EBP. Cuándo indicar (≥48 h si tolerable) y cuánto volumen (20 mL).</div>
+    <div class="form-block">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Horas desde punción dural</label>
+          <input type="number" inputmode="numeric" class="form-input" id="pdph-h" placeholder="ej. 36" min="0" max="240" step="1">
+          <span class="field-hint">0 = momento de la punción</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">EVA cefalea (0–10) <span class="req">*</span></label>
+          <input type="number" inputmode="numeric" class="form-input" id="pdph-eva" placeholder="ej. 6" min="0" max="10" step="1">
+        </div>
+        <div class="form-group">
+          <label class="form-label">¿Afecta actividades de la vida diaria (AVD)?</label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="pdph-avd" id="pdph-a-no" value="no"><label for="pdph-a-no">No (tolerable en reposo)</label></div>
+            <div class="radio-opt danger"><input type="radio" name="pdph-avd" id="pdph-a-si" value="si"><label for="pdph-a-si">Sí (incapacitante)</label></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo de aguja que causó la ADP</label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="pdph-aguja" id="pdph-ag-raq" value="raq" checked><label for="pdph-ag-raq">Raquídea ≤26G</label></div>
+            <div class="radio-opt warning"><input type="radio" name="pdph-aguja" id="pdph-ag-tuo" value="tuohy"><label for="pdph-ag-tuo">Tuohy (ADP accidental)</label></div>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label class="form-label" style="color:var(--accent)">⚠ Red flags — verificar primero (cualquiera → neuroimagen urgente)</label>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" id="pdph-rf1"><span>Déficit neurológico focal o alteraciones visuales</span></label>
+            <label class="check-item"><input type="checkbox" id="pdph-rf2"><span>Convulsiones o deterioro de conciencia</span></label>
+            <label class="check-item"><input type="checkbox" id="pdph-rf3"><span>Cefalea súbita «en trueno» o cambio de carácter</span></label>
+            <label class="check-item"><input type="checkbox" id="pdph-rf4"><span>Fiebre + cefalea (sospechar meningitis / absceso)</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions" style="margin-top:14px;padding-top:14px"><button class="btn btn-primary" onclick="calcHrr('pdph')">Ver manejo →</button></div>
+    </div>
+    <div id="hrr-pdph-out" style="display:none"></div>
+  </div>
+
+  <!-- ── MONITOREO FETAL ── -->
+  <div id="hrr-fetal" style="display:none">
+    <button class="btn btn-secondary" style="margin-bottom:18px" onclick="closeHrr('fetal')">← Herramientas</button>
+    <div class="section-title">👶 Monitoreo Fetal Intraoperatorio</div>
+    <div class="section-desc">Indicaciones, interpretación del CTG silente bajo AG y protocolo de resucitación intrauterina. Evidencia: Po 2019 (41 casos) + ACOG 2017.</div>
+    <div class="form-block">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Edad gestacional (semanas) <span class="req">*</span></label>
+          <input type="number" inputmode="numeric" class="form-input" id="fetal-eg" placeholder="ej. 26" min="14" max="42" step="1">
+        </div>
+        <div class="form-group">
+          <label class="form-label">¿Profesional entrenado en FHR intraop. disponible?</label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="fetal-equipo" id="fetal-eq-si" value="si"><label for="fetal-eq-si">Sí</label></div>
+            <div class="radio-opt danger"><input type="radio" name="fetal-equipo" id="fetal-eq-no" value="no" checked><label for="fetal-eq-no">No</label></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo de cirugía</label>
+          <div class="radio-group">
+            <div class="radio-opt warning"><input type="radio" name="fetal-cx" id="fetal-cx-lap" value="lap"><label for="fetal-cx-lap">Laparoscópica</label></div>
+            <div class="radio-opt"><input type="radio" name="fetal-cx" id="fetal-cx-abier" value="abierta" checked><label for="fetal-cx-abier">Abierta / otra</label></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Técnica anestésica</label>
+          <div class="radio-group">
+            <div class="radio-opt warning"><input type="radio" name="fetal-anest" id="fetal-an-ag" value="ag" checked><label for="fetal-an-ag">Anestesia general</label></div>
+            <div class="radio-opt safe"><input type="radio" name="fetal-anest" id="fetal-an-reg" value="regional"><label for="fetal-an-reg">Regional</label></div>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">¿Patrón CTG ya presente?</label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="fetal-ctg" id="fetal-ctg-no" value="no" checked><label for="fetal-ctg-no">No / aún no iniciado</label></div>
+            <div class="radio-opt warning"><input type="radio" name="fetal-ctg" id="fetal-ctg-sil" value="silente"><label for="fetal-ctg-sil">Silente / variabilidad mínima (probable efecto AG)</label></div>
+            <div class="radio-opt danger"><input type="radio" name="fetal-ctg" id="fetal-ctg-np" value="nontranq"><label for="fetal-ctg-np">Categoría II–III NICHD (no tranquilizador)</label></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions" style="margin-top:14px;padding-top:14px"><button class="btn btn-primary" onclick="calcHrr('fetal')">Ver protocolo →</button></div>
+    </div>
+    <div id="hrr-fetal-out" style="display:none"></div>
+  </div>
+
+  <!-- ── VAD OBSTÉTRICA ── -->
+  <div id="hrr-vad" style="display:none">
+    <button class="btn btn-secondary" style="margin-bottom:18px" onclick="closeHrr('vad')">← Herramientas</button>
+    <div class="section-title">🫁 Vía Aérea Difícil — AG Obstétrica</div>
+    <div class="section-desc">Plan pre-inducción y árbol de rescate post-RSI fallida. La decisión despertar vs. continuar con SAD debe tomarse ANTES de inducir, no durante el fallo.</div>
+    <div class="form-block">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Urgencia obstétrica</label>
+          <div class="radio-group">
+            <div class="radio-opt danger"><input type="radio" name="vad-urg" id="vad-u-1" value="cat1"><label for="vad-u-1">Cat. 1 (inmediata)</label></div>
+            <div class="radio-opt warning"><input type="radio" name="vad-urg" id="vad-u-2" value="cat2"><label for="vad-u-2">Cat. 2–3</label></div>
+            <div class="radio-opt safe"><input type="radio" name="vad-urg" id="vad-u-4" value="cat4" checked><label for="vad-u-4">Cat. 4 (electiva)</label></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Predictores de VAD (marcar los presentes)</label>
+          <div class="check-grid" style="grid-template-columns:1fr 1fr">
+            <label class="check-item"><input type="checkbox" id="vad-mall"><span>Mallampati III–IV</span></label>
+            <label class="check-item"><input type="checkbox" id="vad-dtm"><span>DTM &lt;6 cm</span></label>
+            <label class="check-item"><input type="checkbox" id="vad-obes"><span>Obesidad (IMC ≥35)</span></label>
+            <label class="check-item"><input type="checkbox" id="vad-prec"><span>Preeclampsia (edema vía aérea)</span></label>
+            <label class="check-item"><input type="checkbox" id="vad-edema"><span>Edema supraglótico visible</span></label>
+            <label class="check-item"><input type="checkbox" id="vad-cx-prev"><span>Cx cervical previa / movilidad ↓</span></label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">¿Fase del manejo?</label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="vad-fase" id="vad-f-pre" value="pre" checked><label for="vad-f-pre">Pre-inducción (planear)</label></div>
+            <div class="radio-opt danger"><input type="radio" name="vad-fase" id="vad-f-fallo" value="fallo"><label for="vad-f-fallo">RSI fallida — rescate activo</label></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Videolaringoscopio disponible en sala</label>
+          <div class="radio-group">
+            <div class="radio-opt safe"><input type="radio" name="vad-vl" id="vad-vl-si" value="si" checked><label for="vad-vl-si">Sí</label></div>
+            <div class="radio-opt danger"><input type="radio" name="vad-vl" id="vad-vl-no" value="no"><label for="vad-vl-no">No</label></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions" style="margin-top:14px;padding-top:14px"><button class="btn btn-primary" onclick="calcHrr('vad')">Ver algoritmo →</button></div>
+    </div>
+    <div id="hrr-vad-out" style="display:none"></div>
+  </div>
+
+  <div class="form-actions" style="justify-content:flex-start;margin-top:24px">
+    <button class="btn btn-secondary" onclick="goTo(5)">← Referencia</button>
   </div>
 </div>
 
@@ -1688,6 +2028,16 @@ const REFS = {
     url: 'https://doi.org/10.1016/j.jtha.2025.01.019',
     access: 'paywall'
   },
+  kindel2024: {
+    authors: 'Kindel TL, et al. (AGA/ASMBS/ASA/ISPCOP/SAGES)',
+    title: 'AGA Clinical Practice Guideline on Perioperative Management of Patients on GLP-1 Receptor Agonists',
+    journal: 'Gastroenterology',
+    year: '2024',
+    vol: 'Oct;167(5):1014–1020 · PMID 39370500 · Rec1: NO suspender de rutina→decisión compartida; Rec2: gastroparesia-equivalente, no cancelar',
+    doi: '10.1053/j.gastro.2024.08.007',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11666732/',
+    access: 'free'
+  },
   elkin2025: {
     authors: 'Elkin J, Rele S, Sumithran P, et al.',
     title: 'Association between GLP-1 receptor agonist use and peri-operative pulmonary aspiration: a systematic review and meta-analysis',
@@ -1707,7 +2057,33 @@ const REFS = {
     doi: '10.1111/anae.16541',
     url: 'https://doi.org/10.1111/anae.16541',
     access: 'paywall'
-  }
+  },
+  /* ── MÓDULOS CESÁREA & POSTPARTO (Vista 6) ── */
+  bratzler2013: { authors:'Bratzler DW, Dellinger EP, Olsen KM, et al.', title:'Clinical practice guidelines for antimicrobial prophylaxis in surgery', journal:'Surgical Infections', year:'2013', vol:'14(1):73–156 · cefazolina: 2 g IV si <120 kg; redosing c/4 h en cirugía larga', doi:'10.1089/sur.2013.9999', url:'https://doi.org/10.1089/sur.2013.9999', access:'paywall' },
+  pevzner2011: { authors:'Pevzner L, Swank M, Krepel C, Wing DA, Chan K, Edmiston CE', title:'Effects of maternal obesity on tissue concentrations of prophylactic cefazolin during cesarean delivery', journal:'Obstetrics and Gynecology', year:'2011', vol:'117(4):877–882 · PMID 21422858 · 3 g en paciente >120 kg', doi:'10.1097/AOG.0b013e31820b95e4', url:'https://doi.org/10.1097/AOG.0b013e31820b95e4', access:'paywall' },
+  wassef2026: { authors:'Wassef A, Kosicka-Noworzyn K, Back H, et al.', title:'Cefazolin surgical prophylaxis in obesity: a body composition-driven population pharmacokinetic approach', journal:'Antimicrobial Agents and Chemotherapy', year:'2026', vol:'PMID 42212968 · el peso total es predictor subóptimo; composición corporal sería el ideal', doi:'10.1128/aac.01677-25', url:'https://doi.org/10.1128/aac.01677-25', access:'paywall' },
+  vorobeichik2018: { authors:'Vorobeichik L, Weber EA, Tarshis J', title:'Misconceptions Surrounding Penicillin Allergy: Implications for Anesthesiologists', journal:'Anesthesia and Analgesia', year:'2018', vol:'127(3):642–649 · PMID 29757781 · 95% de etiquetas de alergia PNC no son alergias reales; reactividad cruzada cefazolina <0.1%', doi:'10.1213/ANE.0000000000003419', url:'https://doi.org/10.1213/ANE.0000000000003419', access:'paywall' },
+  nganKee2018: { authors:'Ngan Kee WD, Lee SWY, Ng FF, Khaw KS', title:'Prophylactic Norepinephrine Infusion for Preventing Hypotension During Spinal Anesthesia for Cesarean Delivery', journal:'Anesthesia and Analgesia', year:'2018', vol:'126(6):1989–1994 · PMID 28678073 · NE 5 mcg/mL; iniciar 2.5 mcg/min (30 mL/h); rango 0–5 mcg/min', doi:'10.1213/ANE.0000000000002243', url:'https://doi.org/10.1213/ANE.0000000000002243', access:'paywall' },
+  hasanin2019: { authors:'Hasanin AM, Amin SM, Agiza NA, et al.', title:'Norepinephrine Infusion for Preventing Postspinal Anesthesia Hypotension during Cesarean Delivery: A Randomized Dose-finding Trial', journal:'Anesthesiology', year:'2019', vol:'130(1):55–62 · PMID 30335625 · dosis inicial efectiva 0.05 mcg/kg/min', doi:'10.1097/ALN.0000000000002483', url:'https://doi.org/10.1097/ALN.0000000000002483', access:'paywall' },
+  xue2023: { authors:'Xue X, Lv X, Ma X, et al.', title:'Prevention of spinal hypotension during cesarean section: systematic review and Bayesian network meta-analysis', journal:'Journal of Obstetrics and Gynaecology Research', year:'2023', vol:'49(8):1996–2010 · PMID 37170779 · NE bolo 13–16 mcg IV si infusión no disponible', doi:'10.1111/jog.15671', url:'https://doi.org/10.1111/jog.15671', access:'paywall' },
+  liu2022: { authors:'Liu P, He H, Zhang SS, et al.', title:'Comparative efficacy and safety of prophylactic norepinephrine and phenylephrine in spinal anesthesia for cesarean section: meta-analysis', journal:'Frontiers in Pharmacology', year:'2022', vol:'13:1015325 · DOI confirmado libre · NE reduce bradicardia refleja 63% vs PE', doi:'10.3389/fphar.2022.1015325', url:'https://doi.org/10.3389/fphar.2022.1015325', access:'free' },
+  xiao2020: { authors:'Xiao F, Shen B, Xu WP, et al.', title:'Dose-Response Study of 4 Weight-Based Phenylephrine Infusion Regimens for Preventing Hypotension During Cesarean Delivery Under CSE Anesthesia', journal:'Anesthesia and Analgesia', year:'2020', vol:'130(1):187–193 · PMID 30829668 · ED50=0.31 mcg/kg/min; ED90=0.54 mcg/kg/min — solo CSE con bupi 10 mg + sufentanilo 5 mcg', doi:'10.1213/ANE.0000000000004092', url:'https://doi.org/10.1213/ANE.0000000000004092', access:'paywall' },
+  thon2024: { authors:'Thon JN, Weigand MA, Kranke P, Siegler BH', title:'Efficacy of therapies for post dural puncture headache', journal:'Current Opinion in Anaesthesiology', year:'2024', vol:'37(6):569–578 · PMID 39373993', doi:'10.1097/ACO.0000000000001361', url:'https://doi.org/10.1097/ACO.0000000000001361', access:'paywall' },
+  uppal2024: { authors:'Uppal V, Russell R, Sondekoppam RV, et al.', title:'Evidence-based clinical practice guidelines on postdural puncture headache: consensus from a multisociety international working group', journal:'Regional Anesthesia and Pain Medicine', year:'2024', vol:'49(7):471–501 · PMID 38862195', doi:'10.1136/rapm-2023-104817', url:'https://doi.org/10.1136/rapm-2023-104817', access:'paywall' },
+  uppal2023: { authors:'Uppal V, Russell R, Sondekoppam R, et al.', title:'Consensus Practice Guidelines on Postdural Puncture Headache From a Multisociety, International Working Group: A Summary Report', journal:'JAMA Network Open', year:'2023', vol:'6(8):e2325387 · PMID 37584940 · acceso libre', doi:'10.1001/jamanetworkopen.2023.25387', url:'https://doi.org/10.1001/jamanetworkopen.2023.25387', access:'free' },
+  paech2011: { authors:'Paech MJ, Doherty DA, Christmas T, Wong CA', title:'The volume of blood for epidural blood patch in obstetrics: a randomized, blinded clinical trial', journal:'Anesthesia and Analgesia', year:'2011', vol:'113(1):126–133 · PMID 21596867 · 20 mL óptimo vs 15 mL vs 30 mL', doi:'10.1213/ANE.0b013e318218204d', url:'https://doi.org/10.1213/ANE.0b013e318218204d', access:'paywall' },
+  marhofer2021: { authors:'Marhofer D, Jaksch W, Aigmuller T, et al.', title:'Pain management during pregnancy: An expert-based interdisciplinary consensus recommendation', journal:'Schmerz', year:'2021', vol:'35(6):373–384 · PMID 34324048', doi:'10.1007/s00482-021-00571-4', url:'https://doi.org/10.1007/s00482-021-00571-4', access:'paywall' },
+  dathe2022: { authors:'Dathe K, Frank J, Padberg S, et al.', title:'Fetal adverse effects following NSAID or metamizole exposure in the 2nd and 3rd trimester: evaluation of the German Embryotox cohort', journal:'BMC Pregnancy and Childbirth', year:'2022', vol:'22(1):609 · PMID 36028798 · RR oligohidramnios 5.1 con AINEs SG≥20; cierre prematuro ductus SG≥27', doi:'10.1186/s12884-022-04986-4', url:'https://doi.org/10.1186/s12884-022-04986-4', access:'free' },
+  wuytack2021: { authors:'Wuytack F, Smith V, Cleary BJ', title:'Oral non-steroidal anti-inflammatory drugs (single dose) for perineal pain in the early postpartum period (Cochrane SR)', journal:'Cochrane Database of Systematic Reviews', year:'2021', vol:'CD011352.pub3 · PMID 33427305 · RR 1.91 alivio dolor perineal vs placebo', doi:'10.1002/14651858.CD011352.pub3', url:'https://doi.org/10.1002/14651858.CD011352.pub3', access:'paywall' },
+  deussen2020: { authors:'Deussen AR, Ashwood P, Martis R, Stewart F, Grzeskowiak LE', title:'Relief of pain due to uterine cramping/involution after birth (Cochrane SR)', journal:'Cochrane Database of Systematic Reviews', year:'2020', vol:'CD004908.pub3 · PMID 33078388 · AINEs vs opioides RR 1.33 para cólicos uterinos', doi:'10.1002/14651858.CD004908.pub3', url:'https://doi.org/10.1002/14651858.CD004908.pub3', access:'paywall' },
+  patel2022: { authors:'Patel R, Sushko K, van den Anker J, Samiee-Zafarghandy S', title:'Long-Term Safety of Prenatal and Neonatal Exposure to Paracetamol: Systematic Review', journal:'International Journal of Environmental Research and Public Health', year:'2022', vol:'19(4):2128 · PMID 35206317 · señal neuroconductual no aplica a uso quirúrgico agudo', doi:'10.3390/ijerph19042128', url:'https://doi.org/10.3390/ijerph19042128', access:'free' },
+  castro2022: { authors:'Castro CT, Gama RS, Pereira M, et al.', title:'Effect of Acetaminophen use during pregnancy on adverse pregnancy outcomes: systematic review and meta-analysis', journal:'Expert Opinion on Drug Safety', year:'2022', vol:'21(2):261–273 · PMID 34964403 · paracetamol no aumenta parto prematuro RR 0.97', doi:'10.1080/14740338.2022.2020246', url:'https://doi.org/10.1080/14740338.2022.2020246', access:'paywall' },
+  bock2012: { authors:'Bock H, List E, Kosmala A, Lex B, Moratin P', title:'Silent cardiotocogram during general anesthesia. Indication for emergency Cesarean section?', journal:'Anaesthesist', year:'2012', vol:'61(12):1079–1082 · PMID 23223840 · CTG silente = efecto farmacológico, no hipoxia', doi:'10.1007/s00101-012-2105-2', url:'https://doi.org/10.1007/s00101-012-2105-2', access:'paywall' },
+  ravindra2018: { authors:'Ravindra GL, Madamangalam AS, Seetharamaiah S', title:'Anaesthesia for non-obstetric surgery in obstetric patients', journal:'Indian Journal of Anaesthesia', year:'2018', vol:'62(9):710–716 · PMID 30237597 · neumoperitoneo ≤12 mmHg; CEC: flujo 2.5 L/min, PAM ≥70, Hto ≥28%', doi:'10.4103/ija.IJA_463_18', url:'https://doi.org/10.4103/ija.IJA_463_18', access:'free' },
+  howle2021: { authors:'Howle R, Onwochei D, Harrison SL, Desai N', title:'Comparison of videolaryngoscopy and direct laryngoscopy for tracheal intubation in obstetrics: mixed-methods systematic review and meta-analysis', journal:'Canadian Journal of Anaesthesia', year:'2021', vol:'68(4):546–565 · PMID 33438172 · VL sin ventaja global vs LD en vías no difíciles; ventaja real como rescate', doi:'10.1007/s12630-020-01908-w', url:'https://doi.org/10.1007/s12630-020-01908-w', access:'paywall' },
+  maxwell2024: { authors:'Maxwell S, Rajala B, Schechtman SA, et al.', title:'Development of the obstetric unanticipated difficult video-laryngoscopy algorithm through a quality improvement randomized open-label in situ simulation study', journal:'International Journal of Obstetric Anesthesia', year:'2024', vol:'60:104245 · PMID 39236438 · VL+broncoscopio: 24±10s vs VL+Eschmann 86±35s; hipoxemia 0% vs 71% [SIMULACIÓN n=28]', doi:'10.1016/j.ijoa.2024.104245', url:'https://doi.org/10.1016/j.ijoa.2024.104245', access:'paywall' },
+  metodiev2023: { authors:'Metodiev Y, Mushambi M', title:'The role of supraglottic airway devices in obstetric anaesthesia', journal:'Current Opinion in Anaesthesiology', year:'2023', vol:'36(3):265–272 · PMID 36745078 · SAD como rescate sí; como dispositivo primario en cesárea sin evidencia robusta', doi:'10.1097/ACO.0000000000001241', url:'https://doi.org/10.1097/ACO.0000000000001241', access:'paywall' },
+  delgado2020: { authors:'Delgado C, Ring L, Mushambi MC', title:'General anaesthesia in obstetrics', journal:'BJA Education', year:'2020', vol:'20(6):201–207 · PMID 33456951 · liberar presión cricoidea precozmente ante fallo de intubación', doi:'10.1016/j.bjae.2020.03.003', url:'https://doi.org/10.1016/j.bjae.2020.03.003', access:'free' }
 };
 
 function refHtml(keys) {
@@ -1737,6 +2113,211 @@ function toggleEv(id) {
   const p = document.getElementById('ev-' + id);
   p.classList.toggle('open');
 }
+
+// ══════════════════════════════════════
+// REFERENCIA (paso 5) — datos y motor
+// ══════════════════════════════════════
+var TEMARIO_OB = [
+  { c:'🩺 Técnica anestésica', e:[
+    ['Neuraxial vs anestesia general', 'Preferir neuraxial en cirugía compatible (pelvis, extremidades, LAPE baja); AG reservada para cirugía supraumbilical o contraindicación neuraxial. El bloqueo evita la exposición fetal a agentes volátiles.', ['cas2026','asaObstetric2016','acog775']],
+    ['Cirugía laparoscópica en embarazo', 'Segura en cualquier trimestre si urgente; posición semireclinada 15°, capnografía, PetCO₂ 32–35 mmHg, presión de insuflación ≤15 mmHg. Electiva: posponer hasta 2.º trimestre.', ['sages2024','bsge2019']],
+    ['ISR / estómago lleno', 'Inducción de Secuencia Rápida desde sem 12–13 (RGE aumentado por progesterona + vaciamiento lento). Indicada también en GLP-1, íleo, obstrucción.', ['cas2026','asaFasting2017']],
+    ['Vía aérea difícil obstétrica', 'Mayor riesgo en embarazadas (Mallampati cambia, edema de vía aérea). Plan siempre: videolaringoscopio + CRICO de rescate disponibles. Última guía vigente: OAA/DAS 2015.', ['oaadas2015','kinsella2015']],
+    ['Ayuno y vaciamiento gástrico', 'ASA: 2 h líquidos claros / 6 h leche / 8 h sólidos. En GLP-1, gastroparesia u obstrucción: tratar como estómago lleno → POCUS gástrico o ISR.', ['asaFasting2017','asaFasting2023']],
+    ['LAST — toxicidad por anestésico local', 'Convulsiones o colapso CV: Intralipid 20% + ACLS modificado. Emulsión lipídica disponible en todo quirófano con bloqueo nervioso periférico.', ['asraLast2020']],
+  ]},
+  { c:'💉 Anticoagulación y neuraxial', e:[
+    ['Intervalos mínimos ASRA 5.ª (2025)', 'HBPM profiláctica: 12 h — HBPM terapéutica: 24 h — HNF SC: 6–8 h — HNF IV: 4 h — Warfarina: INR ≤1,5 — DOAC (rivarox/apix/edox): 72 h — Dabigatrán: 72 h (CrCl normal) / 120 h (CrCl 30–49).', ['asra5']],
+    ['Retiro del catéter epidural', 'Requiere los mismos intervalos que la inserción. Riesgo de hematoma espinal es mayor al retirar (trombo ya formado alrededor del catéter). No retirar si plaquetas <70.', ['asra5','soap2018']],
+    ['Reversión de anticoagulantes', 'Warfarina → CCP-4F + vitamina K IV. HBPM → protamina 1 mg/100 UI anti-Xa (máx 50 mg). Dabigatrán → idarucizumab 5 g IV. Anti-Xa (rivaroxabán/apixabán) → andexanet alfa.', ['sarode2013','reverseAD','annexa4','acc2020bleed','paiCrowther']],
+    ['DOAC contraindicados en embarazo', 'Atraviesan la placenta y son teratogénicos/abortivos. Si la paciente estaba con DOAC al descubrir el embarazo: cambio inmediato a HBPM ajustada.', ['isth2025','esaicPreg2024']],
+    ['Anticoagulación en valvulares', 'mWHO III–IV: riesgo alto. Prótesis mecánicas: warfarina o HBPM ajustada (anti-Xa); decisión multidisciplinaria. Nunca DOAC en prótesis mecánica.', ['esc2025','esaicPreg2024']],
+  ]},
+  { c:'🩸 Trombocitopenia y plaquetas', e:[
+    ['Umbral neuraxial — SOAP 2018', 'Plaquetas ≥70×10⁹/L para técnica neuraxial (evidencia A). ASRA 5.ª concuerda. Con tendencia descendente activa: subir umbral a 80–100 o diferir el bloqueo.', ['soap_plaquetas','asra5']],
+    ['Trombocitopenia severa (<50×10⁹/L)', 'Clasificar etiología: gestacional benigna (la más frecuente), HELLP, PTI, TMA (SHU, PTPC). Gestacional mejora post-parto; TMA requiere derivación urgente a hematología.', ['acog171','pecorella2025','mdpi2025']],
+    ['Plaquetas para cirugía no neuraxial', 'Umbral cirugía general: ≥50×10⁹/L. No transfundir profilácticamente por cifra sola; solo ante sangrado activo o procedimiento de alto riesgo.', ['soap_plaquetas','acog171']],
+    ['AAS y neuraxial', 'AAS en monoterapia NO contraindica neuraxial según ASRA (a diferencia de los DOAC). Si hay combinación AAS + anticoagulante, aplican los intervalos del anticoagulante.', ['asra5']],
+  ]},
+  { c:'🫀 Cardiopatía materna', e:[
+    ['Clasificación de riesgo mWHO', 'I = bajo; II = ligero; II–III = intermedio; III = alto (requiere centro terciario + cardiología); IV = contraindicación del embarazo. Toda clase ≥III → derivar antes de cirugía electiva.', ['esc2025']],
+    ['Técnica anestésica en cardiopatías', 'Estenosis mitral o aórtica severa: tolera mal la hipotensión → epidural titulada lenta. Insuficiencia mitral: neuraxial bien tolerada. Cardiopatía cianótica: preferir AG controlada.', ['esc2025','aha2023cardio','esaicPreg2024']],
+    ['Síndrome aortocaval', 'Decúbito supino ≥20 sem comprime vena cava → hipotensión supina del 10–15% de las embarazadas. Inclinar pelvis 15–30° izquierda en todo acto operatorio.', ['acog775']],
+    ['Paro cardíaco materno', 'ACLS estándar + desplazamiento manual uterino hacia la izquierda. Histerotomía resucitativa de emergencia a los 4 min si >23 sem. No diferir masaje por el embarazo.', ['ahaCardiacArrest2015']],
+  ]},
+  { c:'🦠 Sepsis y emergencias agudas', e:[
+    ['Sepsis materna — SSC 2026', 'Noradrenalina 1.ª línea vasopresor (vasopresina como adyuvante). ATB dentro de 1 h del triaje. Cristaloide 1–2 L en las primeras 3 h, objetivo MAP ≥65. Control de foco: útero si origen uterino.', ['ssc2026','smfmSepsis2023']],
+    ['Eclampsia — protocolo anestésico', 'MgSO₄: carga 4–6 g IV lento + mantenimiento 1–2 g/h. Potencia bloqueantes neuromusculares (reducir dosis rocuronio ~50%, monitorizar TOF, revertir con sugammadex). Precaución vía aérea (edema).', ['acog775','openAnesthesiaMg']],
+    ['Paro cardíaco: diferencias vs adulto', 'Inclinar pelvis 15–30° izq, histerotomía de emergencia a 4 min, no cesar masaje por embarazo, MgSO₄ IV si sospecha torsades o eclampsia. RCP de misma calidad.', ['ahaCardiacArrest2015','arriaga2013']],
+    ['Anafilaxia perioperatoria', 'Epinefrina 1.ª línea IM muslo anterolateral 0,5 mg, no demorar por verificar la causa. En embarazada: posición decúbito lateral izq. Disparadores más frecuentes: ATB, NMB, látex.', ['asraLast2020']],
+  ]},
+  { c:'🧬 TVE y tromboprofilaxis', e:[
+    ['Evaluación riesgo TVE — RCOG GTG-37a', 'Suma factores anteparto. ≥4 puntos anteparto → HBPM desde 1.er trimestre. ≥3 puntos postparto → HBPM ≥10 días. Factores: IMC >30, inmovilización, cirugía, viaje >4 h, tabaquismo, multípara.', ['rcog37a']],
+    ['Dosis HBPM por peso', 'Enoxaparina profiláctica: 40 mg/d (peso <80 kg) — 60 mg/d (80–100 kg) — 80 mg/d (>100 kg). Terapéutica: 1 mg/kg cada 12 h. Si CrCl <30: monitoreo anti-Xa.', ['rcog37a','esaicPreg2024','ash2018vte']],
+    ['Interlock ASRA: timing neuraxial', 'Cirugía electiva con HBPM: esperar el intervalo ASRA completo antes de la inducción. La primera dosis postoperatoria de HBPM también requiere el mismo intervalo desde el bloqueo.', ['asra5']],
+    ['TVP o TEP confirmada en embarazo', 'Tratar con HBPM terapéutica (NO warfarina en 1.er T por teratogenicidad; NO DOAC). Duración mínima: hasta 6 semanas postparto (total ≥3–6 meses).', ['isth2025','rcog37a']],
+    ['Profilaxis mecánica', 'Medias de compresión + compresión neumática intermitente durante cirugía >30 min. En laparoscopía ginecológica el riesgo aumenta (Trendelenburg + neumoperitoneo → estasis venosa).', ['rcog37a','caprini']],
+  ]},
+  { c:'💊 Fármacos y fisiología materna', e:[
+    ['MgSO₄ y bloqueantes neuromusculares', 'MgSO₄ potencia todos los BNM no despolarizantes (rocuronio, vecuronio) → reducir dosis inicial ~50%, monitorizar TOF en todo momento. Revertir con sugammadex (dosis habitual). No usar succinilcolina en infusión continua.', ['acog775','openAnesthesiaMg']],
+    ['Corticoides para madurez pulmonar', 'Betametasona 12 mg × 2 IM/24 h o dexametasona 6 mg × 4 IM/12 h. Ventana recomendada: 24+0 – 33+6 sem. Cirugía urgente no cancela la indicación; administrar si hay tiempo mínimo.', ['acog713']],
+    ['GLP-1 y riesgo de aspiración', 'Retrasan vaciamiento gástrico ~6× pese a ayuno adecuado (Elkin 2025). Guía multisociedad 2024 (AGA/ASA/SAGES): no suspender de rutina → decisión compartida; tratar como gastroparesia-equivalente.', ['kindel2024','elkin2025','glp1Consensus2025']],
+    ['Anemia en embarazo — OMS 2024', 'Hb <11 g/dL = anemia del embarazo. Hb <8 g/dL: optimizar con hierro IV preoperatorio. Hb <6 g/dL: evaluar transfusión urgente. Hierro IV de elección si no tolera oral o urgencia.', ['whoAnemia2024']],
+    ['Profilaxis antibiótica quirúrgica', 'Cefazolina 2 g IV 30 min antes de incisión. Re-dosificar c/4 h si cirugía larga. Alergia severa a penicilina: clindamicina + gentamicina. No diferir en urgencia.', ['cas2026']],
+    ['Interculturalidad y consentimiento', 'Ley 20.584 Art. 28: derecho a atención con pertinencia cultural e intérprete en lengua indígena. En pacientes mapuche: validar comprensión en su lengua, respetar la decisión familiar como parte del consentimiento.', ['ley20584']],
+  ]},
+  { c:'🏥 Cesárea & Postparto — Herramientas Específicas', e:[
+    ['Profilaxis ATB cesárea — dosis por peso', 'Cefazolina 2 g IV si &lt;120 kg; 3 g IV si ≥120 kg (Pevzner 2011). Administrar 30–60 min antes de incisión. Redosing 2 g si cirugía &gt;4 h (extrapolado de cirugía general — Bratzler 2013). Alergia severa a PNC: clindamicina 900 mg + gentamicina 5 mg/kg IV (ACOG #199).', ['bratzler2013','pevzner2011','wassef2026']],
+    ['Alergia a penicilina y cefazolina', 'El 95% de las etiquetas de «alergia a PNC» no son alergias reales. La reactividad cruzada cefazolina–penicilina es &lt;0.1% (Vorobeichik 2018). Solo la alergia severa (anafilaxia, angioedema, broncoespasmo) contraindica la cefazolina. Alergia leve o incierta → usar cefazolina de todas formas.', ['vorobeichik2018']],
+    ['Hipotensión neuroaxial en cesárea — umbral y vasopresor', 'La hipotensión espinal afecta al 80–90% de las cesáreas bajo raquídea. Umbral: TAS &lt;80% del basal O &lt;90 mmHg. NE primera línea: reduce bradicardia refleja 63% vs fenilefrina (Liu 2022, meta-análisis 12 RCTs). Infusión titulada Ngan Kee 2018: NE 5 mcg/mL, iniciar 2.5 mcg/min (30 mL/h), ajustar 0–5 mcg/min. Alternativa por peso: 0.05 mcg/kg/min (Hasanin 2019). Bolo profiláctico: 13–16 mcg IV (Xue 2023).', ['nganKee2018','hasanin2019','liu2022','xue2023']],
+    ['Fenilefrina en cesárea — cuándo y dosis', 'Si NE no disponible o FC basal &lt;70 lpm con precaución de bradicardia. ED50/ED90 por peso SOLO en técnica CSE con bupivacaína hiperbárica 10 mg + sufentanilo 5 mcg intratecal: ED50=0.31 mcg/kg/min; ED90=0.54 mcg/kg/min (Xiao 2020). No extrapolar a espinal simple. pH cordonal: NE y PE son equivalentes (Liu 2022).', ['xiao2020','liu2022']],
+    ['PDPH — diagnóstico y manejo', 'Cefalea postural dentro de 5 días de punción dural (ICHD-3). Verificar red flags antes de tratar. Escalera: paracetamol 1g c/6h + ibuprofeno 600–800 mg c/8h + cafeína 300 mg c/8h (Thon 2024). Paso 2: gabapentina 300 mg c/6h. EBP: diferir ≥48h si tolerable (mayor éxito); 20 mL es el volumen óptimo (Paech 2011 RCT). Seguimiento hasta resolución completa por riesgo de cefalea crónica, TVC, depresión.', ['thon2024','uppal2024','uppal2023','paech2011']],
+    ['Analgesia postoperatoria — embarazo vs. puerperio', 'La bifurcación embarazo/puerperio es la decisión más crítica: un fármaco contraindicado en 3T (AINEs) es primera línea posparto. Paracetamol: seguro en todos los trimestres y puerperio. AINEs en embarazo: SG 1–12 evitar; SG 13–26 uso puntual; SG ≥27 BLOQUEADOS (Dathe 2022, RR cierre ductus). Puerperio: AINEs primera línea (ibuprofeno 400–600 mg c/8h) — RR 1.91 vs placebo para dolor perineal (Wuytack 2021). Petidina: contraindicada en embarazo (norpetidina neurotóxica, Apgar bajo).', ['marhofer2021','dathe2022','wuytack2021','deussen2020','patel2022','castro2022']],
+    ['Monitoreo fetal intraoperatorio — indicaciones y límites', 'Iniciar si EG ≥22 sem Y profesional entrenado + equipo obstétrico-neonatal en standby (ACOG 2017). Sin equipo capaz de responder: no iniciar — el monitoreo sin respuesta es un riesgo. CTG silente bajo AG: efecto farmacológico probable, NO actuar sin correlacionar con HD materna (Bock 2012). Laparoscopía: presión neumoperitoneo ≤12 mmHg. Serie Po 2019 (41 casos): 0 cesáreas intraoperatorias; las 2 cesáreas de la serie fueron en primeras 48h postoperatorias — monitoreo continuo recomendado postop.', ['po2019','bock2012','ravindra2018']],
+    ['VAD obstétrica — árbol de rescate post-RSI', 'Intubación fallida ~1:390 en obstetricia (Kinsella 2015). Decisión despertar vs. continuar con SAD: tomar ANTES de inducir basándose en urgencia Cat.1–4 (Mushambi 2016). Plan A: VL primera línea si VAD anticipada. Plan B: VL+broncoscopio flexible (simulación n=28: 24s vs 86s con Eschmann, hipoxemia 0% vs 71% — Maxwell 2024). Plan C: SAD 2ª generación. Plan D — CICO → FONA. Liberar presión cricoidea tempranamente si impide intubación (Delgado 2020).', ['oaadas2015','maxwell2024','howle2021','metodiev2023','delgado2020','kinsella2015']],
+  ]},
+];
+
+var GLOSARIO_OB = [
+  { g:'Anestesia / técnica', e:[
+    ['AG', 'Anestesia General — inducción IV + intubación orotraqueal. En embarazada siempre con ISR desde sem 12–13.'],
+    ['BNM / NMB', 'Bloqueante Neuromuscular (rocuronio, vecuronio, succinilcolina). MgSO₄ los potencia; monitorizar TOF.'],
+    ['ISR / RSI', 'Inducción de Secuencia Rápida — técnica de elección ante riesgo de aspiración (embarazo, GLP-1, íleo).'],
+    ['LAST', 'Local Anesthetic Systemic Toxicity — intoxicación sistémica por anestésico local; tratamiento: Intralipid 20% + ACLS.'],
+    ['TOF', 'Train of Four — monitor de bloqueo neuromuscular. No extubar antes de TOF ≥0,9, especialmente con MgSO₄.'],
+    ['VAD', 'Vía Aérea Difícil — predictores en embarazada: Mallampati III–IV, edema laríngeo, cuello corto.'],
+    ['POCUS gástrico', 'Ultrasonido point-of-care del estómago — cuantifica contenido gástrico en pacientes de riesgo antes de inducción.'],
+    ['VL', 'Videolaringoscopio — dispositivo de primera línea en vía aérea difícil obstétrica (junto con intubador de fibra óptica).'],
+  ]},
+  { g:'Anticoagulación', e:[
+    ['ASRA', 'American Society of Regional Anesthesia — guías de intervalos para técnica neuroaxial bajo anticoagulación (5.ª ed. 2025, Kopp).'],
+    ['DOAC', 'Direct Oral Anticoagulant — rivaroxabán, apixabán, edoxabán, dabigatrán. Contraindicados en embarazo (atraviesan placenta).'],
+    ['HBPM', 'Heparina de Bajo Peso Molecular — enoxaparina, dalteparina. Fármaco de elección en TVE durante el embarazo.'],
+    ['HNF', 'Heparina No Fraccionada — IV: revertir 4 h antes de neuraxial; SC: 6–8 h. Útil si se necesita reversión rápida con protamina.'],
+    ['INR', 'International Normalized Ratio — ratio de tiempo de protrombina. Umbral neuraxial con warfarina: INR ≤1,5 (ASRA 5.ª).'],
+    ['Anti-Xa', 'Actividad anti-factor Xa — monitoreo de HBPM. Nivel ≤0,1 U/mL = indetectable (criterio ASRA 5.ª para neuraxial).'],
+    ['TTPa', 'Tiempo de Tromboplastina Parcial Activado — vía intrínseca; ratio ≤1,2 para neuraxial con HNF IV (ASRA).'],
+    ['CCP-4F', 'Concentrado de Complejo Protrombínico de 4 factores — revierte warfarina en minutos (+ vitamina K IV adjunta).'],
+    ['CrCl', 'Clearance de creatinina — determina ajuste de dosis HBPM (CrCl <30: reducir + anti-Xa) e intervalo dabigatrán.'],
+  ]},
+  { g:'Obstétrico / perinatal', e:[
+    ['EG', 'Edad Gestacional — en semanas + días (ej. 28+3). Umbral viabilidad: 23 sem; madurez pulmonar con corticoides: 24+0–33+6.'],
+    ['EEI', 'Esfínter Esofágico Inferior — pierde tono por progesterona desde el 1.er trimestre → mayor riesgo de RGE y aspiración.'],
+    ['HELLP', 'Hemolysis, Elevated Liver enzymes, Low Platelets — complicación grave de la preeclampsia. Plaquetas caen rápido; urgencia obstétrica.'],
+    ['HPP / PPH', 'Hemorragia Postparto — pérdida ≥500 mL (vaginal) o ≥1000 mL (cesárea). Bundle MOTIVE (WHO/FIGO 2025): ver ETHOS·HEMO.'],
+    ['mWHO', 'Clasificación de riesgo cardíaco del embarazo (OMS modificada, I–IV). Clase IV = contraindicación absoluta del embarazo.'],
+    ['PAS / PAC', 'Placenta Acreta Spectrum — espectro de invasión placentaria (áccreta, increta, percreta). Manejo en centro con UCI + cirugía vascular.'],
+    ['PDPH', 'Post-Dural Puncture Headache — cefalea postpunción dural. Tratamiento definitivo: parche hemático epidural (éxito ~80%).'],
+    ['PE / PEC', 'Preeclampsia — PAS ≥140/90 + proteinuria o disfunción orgánica ≥20 sem. Severa si ≥160/110 o afectación de órgano blanco.'],
+    ['RGE', 'Reflujo Gastroesofágico — aumentado en embarazo por relaxación EEI + compresión del útero sobre el estómago.'],
+    ['TVE', 'Tromboembolismo Venoso (TVP + TEP) — riesgo 5× mayor vs no embarazada; primera causa de muerte materna directa en países desarrollados.'],
+    ['DPPNI', 'Desprendimiento Prematuro de Placenta Normoinserta — emergencia obstétrica + riesgo alto de CID consumptiva.'],
+    ['FRCM', 'Frecuencia Cardíaca Fetal — monitoreo intraoperatorio recomendado en fetos viables (≥23 sem) con obstetricia disponible.'],
+  ]},
+  { g:'Cardiovascular y hemodinámica', e:[
+    ['FC', 'Frecuencia Cardíaca — aumenta ~15–20 lpm fisiológicamente en embarazo. Umbral taquicardia: >100 lpm.'],
+    ['GC', 'Gasto Cardíaco — aumenta 40–50% en embarazo (↑ volemia + FC + VE). Crítico en cardiopatías clase III–IV.'],
+    ['MAP', 'Mean Arterial Pressure (Presión Arterial Media) — objetivo ≥65 mmHg en sepsis. Fórmula: (PAS + 2×PAD)/3.'],
+    ['PAS / PAD', 'Presión Arterial Sistólica / Diastólica. Emergencia hipertensiva: PAS ≥160 o PAD ≥110 → tratar en <30 min (riesgo ACV).'],
+    ['OSI', 'Índice de Shock Obstétrico = FC/PAS. Valor ≥0,9 indica inestabilidad hemodinámica significativa.'],
+  ]},
+  { g:'TVE y tromboprofilaxis', e:[
+    ['TEP', 'Tromboembolismo Pulmonar — primera causa de muerte materna directa en países desarrollados. Diagnóstico: angiotac o gammagrafía.'],
+    ['TVP', 'Trombosis Venosa Profunda — afecta >80% al miembro inferior izquierdo (vena ilíaca comprimida por útero). Ecodoppler diagnóstico.'],
+    ['Caprini', 'Score de Caprini — sistema de puntuación de riesgo trombótico para cirugía general. Para embarazadas se complementa con RCOG GTG-37a.'],
+  ]},
+  { g:'Sociedades y guías', e:[
+    ['ACOG', 'American College of Obstetricians and Gynecologists — Committee Opinions (CO) y Practice Bulletins (PB); referencia en embarazo y perioperatorio.'],
+    ['ASA', 'American Society of Anesthesiologists — guías de ayuno, manejo de vía aérea, documentos de consenso perioperatorio.'],
+    ['ASRA', 'American Society of Regional Anesthesia — guías de intervalo neuraxial bajo anticoagulación (5.ª ed. 2025).'],
+    ['CAS', 'Canadian Anesthesiologists\' Society — Guidelines to the Practice of Anesthesia, edición 2026.'],
+    ['RCOG', 'Royal College of Obstetricians and Gynaecologists — Green-top Guidelines (GTG). GTG-37a: TVE en embarazo.'],
+    ['SAGES', 'Society of American Gastrointestinal and Endoscopic Surgeons — guías de laparoscopía en embarazo (2024).'],
+    ['SOAP', 'Society for Obstetric Anesthesia and Perinatology — plaquetas ≥70×10⁹/L para técnica neuraxial (consenso 2018).'],
+    ['SSC', 'Surviving Sepsis Campaign — sepsis 2026: noradrenalina 1.ª línea, ATB <1 h, 1–2 L cristaloide/3 h.'],
+    ['ESC', 'European Society of Cardiology — guía cardiopatía y embarazo (ESC 2025, nueva edición).'],
+    ['ISTH', 'International Society on Thrombosis and Haemostasis — guías de DOAC, TVE y anticoagulación en embarazo.'],
+    ['BSGE', 'British Society for Gynaecological Endoscopy — guía de laparoscopía en embarazo (2019, avalada por RCOG).'],
+    ['OAA/DAS', 'Obstetric Anaesthetists\' Association / Difficult Airway Society — guía de vía aérea difícil en obstetricia (2015, vigente).'],
+  ]},
+  { g:'Fármacos clave', e:[
+    ['MgSO₄', 'Sulfato de Magnesio — neuroprotección fetal (<32 sem) + prevención/tratamiento eclampsia. Potencia BNM no despolarizantes → monitorizar TOF.'],
+    ['TXA', 'Ácido Tranexámico — antifibrinolítico. En cirugía no obstétrica: solo si sangrado activo (no profiláctico en embarazo). Dosis: 1 g IV (repetir a 30 min).'],
+    ['Betametasona', 'Corticoide de elección para madurez pulmonar fetal (12 mg × 2 IM/24 h). Ventana 24+0–33+6 sem. Alternativa: dexametasona 6 mg × 4 IM/12 h.'],
+    ['Noradrenalina', 'Vasopresor de 1.ª elección en sepsis (SSC 2026) y en hipotensión por neuraxial en la embarazada (desplazó a efedrina para mantenimiento de PAS).'],
+    ['Idarucizumab', 'Reversor del dabigatrán (RE-VERSE AD). Dosis: 5 g IV en 2 bolos de 2,5 g. Disponible en urgencias hospitalarias.'],
+    ['Andexanet α', 'Reversor de anti-Xa (rivaroxabán, apixabán). Dosis alta (800 mg bolo + 960 mg infusión) o baja según dosis del DOAC y tiempo desde última toma.'],
+    ['CCP-4F', 'Concentrado de Complejo Protrombínico de 4 factores — revierte warfarina (+ vitamina K IV). Dosis: 25–50 UI/kg según INR basal.'],
+  ]},
+  { g:'Local Chile', e:[
+    ['HHHA', 'Hospital Hernán Henríquez Aravena — Temuco, Araucanía Sur. Hospital de referencia regional de la red SSASUR.'],
+    ['SSASUR', 'Servicio de Salud Araucanía Sur — red de salud pública. Emite protocolos PBM y transfusión (Ord. N°3430, PR-BS-0113).'],
+    ['PBM', 'Patient Blood Management — gestión perioperatoria de la sangre. Protocolo SSASUR: hierro IV preop en cirugía de alto riesgo de sangrado.'],
+    ['Ley 20.584', 'Ley chilena de derechos y deberes del paciente, Art. 28: atención con pertinencia cultural e intérprete en lengua indígena (mapuzungun).'],
+  ]},
+];
+
+var REF5_SUB = 'temario';
+
+function refLinkOb(key) {
+  var r = REFS[key]; if (!r) return '';
+  var url = r.url || (r.doi ? 'https://doi.org/' + r.doi : '');
+  if (!url) return '';
+  var authorFirst = r.authors ? r.authors.split(',')[0].trim().split(' ')[0] : '';
+  var label = (authorFirst && r.year) ? authorFirst + ' ' + r.year : (r.title ? r.title.substring(0,28)+'…' : key);
+  var badge = r.access === 'free' ? '<span class="ref-badge rb-free">libre</span>' : (r.access === 'paywall' ? '<span class="ref-badge rb-pay">paywall</span>' : '');
+  return '<a href="' + url + '" target="_blank" class="srclink">' + label + ' ↗</a>' + badge;
+}
+
+function refsHtmlOb(keys) {
+  return (keys || []).map(refLinkOb).filter(Boolean).join(' · ');
+}
+
+function setRefSubOb(s) {
+  REF5_SUB = s;
+  ['temario','siglas'].forEach(function(t) {
+    var btn = document.getElementById('ref5-sub-' + t);
+    if (btn) btn.classList.toggle('sel', t === s);
+  });
+  filtrarRefOb();
+}
+
+function filtrarRefOb() {
+  var q = (document.getElementById('ref5-search') ? document.getElementById('ref5-search').value : '').toLowerCase().trim();
+  if (REF5_SUB === 'temario') { renderTemarioOb(q); } else { renderSiglasOb(q); }
+}
+
+function renderTemarioOb(q) {
+  var h = '';
+  TEMARIO_OB.forEach(function(g) {
+    var items = g.e.filter(function(e) { return !q || e[0].toLowerCase().includes(q) || e[1].toLowerCase().includes(q); });
+    if (!items.length) return;
+    h += '<div class="glo-group"><div class="secn">' + g.c + '</div>';
+    items.forEach(function(e) {
+      h += '<div class="gl-item"><b>' + e[0] + '</b> — ' + e[1];
+      if (e[2] && e[2].length) h += '<div class="gl-refs">' + refsHtmlOb(e[2]) + '</div>';
+      h += '</div>';
+    });
+    h += '</div>';
+  });
+  if (!h) h = '<p class="glo-hint" style="margin-top:16px">Sin resultados para "' + q + '".</p>';
+  document.getElementById('ref5-body').innerHTML = h;
+}
+
+function renderSiglasOb(q) {
+  var h = '';
+  GLOSARIO_OB.forEach(function(g) {
+    var items = g.e.filter(function(e) { return !q || e[0].toLowerCase().includes(q) || e[1].toLowerCase().includes(q); });
+    if (!items.length) return;
+    h += '<div class="glo-group"><div class="secn">' + g.g + '</div>';
+    items.forEach(function(e) { h += '<div class="gl-item"><b>' + e[0] + '</b> — ' + e[1] + '</div>'; });
+    h += '</div>';
+  });
+  if (!h) h = '<p class="glo-hint" style="margin-top:16px">Sin resultados para "' + q + '".</p>';
+  document.getElementById('ref5-body').innerHTML = h;
+}
+
+function renderReferenciaOb() { setRefSubOb(REF5_SUB); }
 
 // ══════════════════════════════════════
 // UI HELPERS
@@ -1777,12 +2358,14 @@ let datos = {}, evaluacion = {};
 function goTo(n) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-' + n).classList.add('active');
-  [1,2,3,4].forEach(i => {
+  [1,2,3,4,5,6].forEach(i => {
     const btn = document.getElementById('btn-step' + i);
+    if (!btn) return;
     btn.classList.remove('active','completed');
     if (i < n) btn.classList.add('completed');
     if (i === n) btn.classList.add('active');
   });
+  if (n === 5) renderReferenciaOb();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1812,7 +2395,7 @@ function resetForm() {
   document.getElementById('print-doc').innerHTML = '';
   var docC = document.getElementById('docente-container');
   if (docC) docC.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🎓</div><div class="es-text">Complete la evaluación (paso 1) para ver el modo docente de este caso.</div></div>';
-  [1,2,3,4].forEach(i => document.getElementById('btn-step'+i).classList.remove('active','completed'));
+  [1,2,3,4,5,6].forEach(i => { var b=document.getElementById('btn-step'+i); if(b) b.classList.remove('active','completed'); });
   document.getElementById('btn-step1').classList.add('active');
   goTo(1);
 }
@@ -2307,8 +2890,8 @@ function calcular(d) {
   }
   if (d.glp1) {
     e.va.push({ tipo:'warning', icon:'💉',
-      txt:'AGONISTA GLP-1 (semaglutida/tirzepatida): retrasa el vaciamiento gástrico — riesgo de contenido gástrico residual ~6 veces mayor PESE a un ayuno adecuado (meta-análisis: OR 5,96). La aspiración no está demostrada aumentada, pero se recomienda precaución: continuar el fármaco, estratificar el riesgo y considerar ECOGRAFÍA GÁSTRICA (POCUS) para evaluar el contenido; si hay duda o se confirma contenido, tratar como estómago lleno → ISR. La precaución es mayor si se inició hace <12 semanas.',
-      ref:'Elkin et al, Anaesthesia 2025 · Consenso El-Boghdadly 2025', url:'https://doi.org/10.1111/anae.16601'
+      txt:'AGONISTA GLP-1 (semaglutida/tirzepatida/liraglutida): retrasa el vaciamiento gástrico — contenido gástrico residual ~6× mayor pese a ayuno adecuado (OR 5,96; Elkin 2025); aspiración NO demostrada aumentada. Guía multisociedad 2024 (AGA/ASMBS/ASA/SAGES): Rec 1 — NO suspender de rutina, decisión compartida con el paciente; Rec 2 — tratar como gastroparesia-equivalente (restricción dietaria ± ISR), no cancelar de rutina. Estratificar con ECOGRAFÍA GÁSTRICA (POCUS); si hay duda o contenido confirmado → ISR. Mayor precaución si inicio hace <12 semanas.',
+      ref:'Kindel 2024 AGA/ASA (libre) · Elkin 2025 · Consenso El-Boghdadly 2025', url:'https://pmc.ncbi.nlm.nih.gov/articles/PMC11666732/'
     });
   }
   // Sólidos: ≥6h; Líquidos claros: ≥2h
@@ -3997,7 +4580,7 @@ function fmtDurHM(horasDecimal){
 }
 
 // ══════════════════════════════════════
-// MODO EMERGENCIA — ayudas cognitivas de crisis (v2.7)
+// MODO EMERGENCIA — ayudas cognitivas de crisis (v2.8)
 // Accesible siempre desde el header. Cada paso anclado a su fuente verificada (PMID/DOI).
 // Respaldo del valor de las ayudas cognitivas: Arriaga et al, NEJM 2013 (PMID 23323901).
 // ══════════════════════════════════════
@@ -4529,7 +5112,7 @@ function renderResults() {
 }
 
 // ══════════════════════════════════════
-// MODO DOCENTE — el porqué de cada decisión, dinámico por caso (v2.7)
+// MODO DOCENTE — el porqué de cada decisión, dinámico por caso (v2.8)
 // Capa de PRESENTACIÓN sobre el objeto `evaluacion` (e): no agrega contenido
 // clínico nuevo, reusa qué/razón/condiciones/cita que el motor ya produjo, por lo
 // que es imposible que contradiga la pestaña clínica. Si una rama no trae un campo,
@@ -4760,7 +5343,7 @@ function renderPrint() {
 
   document.getElementById('print-doc').innerHTML =
   '<div class="print-header">'
-  + '<div><div class="print-logo">ETHOS<span>·</span>OB<span class="print-logo-sub">Apoyo a la decisión anestésica · Cirugía no obstétrica en embarazo · Lumina Health AI SpA · v2.7</span></div></div>'
+  + '<div><div class="print-logo">ETHOS<span>·</span>OB<span class="print-logo-sub">Apoyo a la decisión anestésica · Cirugía no obstétrica en embarazo · Lumina Health AI SpA · v2.8</span></div></div>'
   + '<div class="print-meta">Hospital Hernán Henríquez Aravena<br>Temuco, Chile<br>' + fecha + ' · ' + hora + '<br><strong>Documento de apoyo clínico — NO es ficha clínica oficial</strong></div>'
   + '</div>'
 
@@ -4936,7 +5519,7 @@ function renderPrint() {
 
   + (d.observaciones ? '<div class="print-section"><div class="print-section-title">Observaciones clínicas</div><div style="font-size:12px;line-height:1.6;white-space:pre-wrap">' + d.observaciones + '</div></div>' : '')
   + '<div style="font-size:9px;color:#999;font-family:Consolas,monospace;text-align:right;margin-bottom:8px;border-top:1px solid #eee;padding-top:6px">'
-  + 'ID Sesión: ' + sessionId + ' · ETHOS·OB v2.7 · Lumina Health AI SpA · RUT 78.385.985-8'
+  + 'ID Sesión: ' + sessionId + ' · ETHOS·OB v2.8 · Lumina Health AI SpA · RUT 78.385.985-8'
   + '</div>'
   + '<div class="print-disclaimer"><strong>AVISO LEGAL Y CLÍNICO:</strong> Herramienta de apoyo a la decisión clínica basada en guías internacionales vigentes. No reemplaza la evaluación clínica individualizada ni constituye prescripción médica. ACOG 775 (2019) reconoce que no existen RCTs en esta población — toda evidencia es observacional o de consenso experto. ETHOS·OB aplica un marco EXTRAPOLADO de las guías de anestesia obstétrica y general, ajustado por trimestre y fisiología gestacional; interprétese como apoyo basado en la mejor evidencia disponible, no como evidencia directa. Las recomendaciones deben adaptarse al contexto institucional y evolución del caso. Lumina Health AI SpA — RUT 78.385.985-8 — Temuco, Chile.</div>'
 
@@ -4948,7 +5531,7 @@ function renderPrint() {
 }
 
 // ══════════════════════════════════════
-// MODO RÁPIDO — orientación anestésica en vivo (v2.7)
+// MODO RÁPIDO — orientación anestésica en vivo (v2.8)
 // Escribe en los campos reales del formulario (fuente única de verdad)
 // y reutiliza collectFormData() + calcular() para la orientación preliminar.
 // ══════════════════════════════════════
@@ -5060,6 +5643,419 @@ function verDecisionCompleta(){
 
 
 
+
+// ══════════════════════════════════════
+// VISTA 6 — HERRAMIENTAS CESÁREA & POSTPARTO
+// ══════════════════════════════════════
+
+var HRR_KEYS = ['atb','hip','anal','pdph','fetal','vad'];
+
+function openHrr(k) {
+  document.getElementById('hrr-home').style.display = 'none';
+  HRR_KEYS.forEach(function(x){ document.getElementById('hrr-'+x).style.display = 'none'; });
+  document.getElementById('hrr-'+k).style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function closeHrr(k) {
+  document.getElementById('hrr-'+k).style.display = 'none';
+  ['atb','hip','anal','pdph','fetal','vad'].forEach(function(x){
+    var out = document.getElementById('hrr-'+x+'-out'); if(out){ out.style.display='none'; out.innerHTML=''; }
+  });
+  document.getElementById('hrr-home').style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function calcHrr(k) {
+  var fns = { atb:calcATB, hip:calcHip, anal:calcAnal, pdph:calcPDPH, fetal:calcFetal, vad:calcVAD };
+  if(fns[k]) fns[k]();
+}
+
+function toggleAnalEG() {
+  var ctx = document.querySelector('input[name="anal-ctx"]:checked');
+  var box = document.getElementById('anal-eg-box');
+  if(box) box.style.display = (ctx && ctx.value === 'embarazo') ? 'block' : 'none';
+}
+
+function hA(tipo, ic, txt) {
+  return '<div class="alert-item '+tipo+'"><span class="alert-icon">'+ic+'</span><span>'+txt+'</span></div>';
+}
+
+function hrrCard(titulo, cuerpo, refs) {
+  var h = '<div class="result-card full" style="margin-bottom:14px"><div class="card-header"><div class="card-title">'+titulo+'</div></div><div class="card-body">'+cuerpo;
+  if(refs && refs.length) h += evBtn('hrr-'+titulo.replace(/\s/g,'').slice(0,10)+Math.random().toString(36).slice(2,6), refs);
+  h += '</div></div>';
+  return h;
+}
+
+// ─── MÓDULO 1: ATB ────────────────────────────────────
+function calcATB() {
+  var alergia = (document.querySelector('input[name="atb-alergia"]:checked')||{}).value || null;
+  if(!alergia){ alert('Seleccione el estado de alergia a Penicilina.'); return; }
+  var peso = parseFloat(document.getElementById('atb-peso').value) || null;
+  var larga = (document.querySelector('input[name="atb-larga"]:checked')||{}).value || 'no';
+  var timing = (document.querySelector('input[name="atb-timing"]:checked')||{}).value || 'ok';
+
+  var out = document.getElementById('hrr-atb-out');
+  var h = '<div class="results-grid" style="margin-top:18px">';
+
+  if(alergia === 'severa') {
+    h += '<div class="result-card full"><div class="card-header" style="background:#fdf2f0"><div class="card-icon" style="background:#fdf2f0;font-size:22px">🚨</div><div class="card-title" style="color:var(--accent)">ALERGIA SEVERA — Esquema alternativo</div></div><div class="card-body"><div class="alert-list">';
+    h += hA('danger','🚫','<strong>Cefazolina CONTRAINDICADA</strong>. Anafilaxia / angioedema / broncoespasmo a penicilina.');
+    h += hA('warning','💉','<strong>Clindamicina 900 mg IV</strong> + <strong>Gentamicina 5 mg/kg IV</strong> — administrar 30–60 min antes de incisión. Fuente: ACOG Committee Opinion #199.');
+    h += hA('info','📋','Documentar la indicación del esquema alternativo en ficha. Notificar al equipo quirúrgico.');
+    h += '</div>'+evBtn('atb-sev',['vorobeichik2018','bratzler2013'])+'</div></div>';
+  } else {
+    if(alergia === 'leve') {
+      h += '<div class="result-card full"><div class="card-body"><div class="alert-list">';
+      h += hA('ok','✅','<strong>Alergia leve/incierta → cefazolina segura.</strong> El 95% de las etiquetas de "alergia a PNC" no son alergias reales. La reactividad cruzada cefazolina–penicilina es &lt;0.1% (Vorobeichik 2018, PMID 29757781). Proceder con cefazolina en dosis según peso.');
+      h += '</div></div></div>';
+    }
+
+    // Bloque dosis
+    h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="background:#f0f7f3;font-size:22px">💊</div><div class="card-title">Prescripción calculada</div></div><div class="card-body">';
+    if(!peso) {
+      h += '<div class="alert-list">'+hA('warning','⚖️','Ingrese el peso materno para calcular la dosis automáticamente.')+'</div>';
+    } else {
+      var dosis = peso >= 120 ? 3 : 2;
+      h += '<div style="background:#f0f7f3;border:1.5px solid var(--green2);border-radius:8px;padding:16px 20px;margin-bottom:14px">';
+      h += '<div style="font-family:Consolas,monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--green);margin-bottom:4px">DOSIS — '+(peso>=120?'≥120 kg':'&lt;120 kg')+' ('+peso+' kg)</div>';
+      h += '<div style="font-family:Georgia,serif;font-size:28px;font-weight:700;color:var(--green);line-height:1">'+dosis+' g IV</div>';
+      h += '<div style="font-size:13px;color:var(--ink2);margin-top:5px">Cefazolina '+dosis+' g en 100 mL SF — infundir en 15–30 min</div>';
+      h += '<div style="font-size:10px;color:var(--ink3);margin-top:5px;font-family:Consolas,monospace">Bratzler 2013 · Pevzner 2011 · Wassef 2026</div>';
+      h += '</div>';
+      h += '<div class="alert-list">';
+      h += hA('info','⏱','<strong>Timing:</strong> '+(timing==='urgen'?'Emergencia → administrar tan pronto como sea posible':'Administrar 30–60 min antes de incisión')+'. Máxima concentración tisular al momento del corte.');
+      if(larga==='si') h += hA('warning','🔄','<strong>Redosing intraoperatorio:</strong> Cirugía &gt;4 h → agregar <strong>2 g cefazolina IV</strong> adicional. <em>(Extrapolado de cirugía general — Bratzler 2013; sin evidencia obstétrica directa.)</em>');
+      h += hA('info','⚠️','<strong>Limitación Wassef 2026:</strong> El umbral de 120 kg es una aproximación práctica. En obesidad sarcopénica (alto % grasa con peso &lt;120 kg) podría subestimarse el riesgo. La composición corporal sería el predictor óptimo.');
+      h += '</div>';
+    }
+    h += evBtn('atb-main',['bratzler2013','pevzner2011','wassef2026','vorobeichik2018'])+'</div></div>';
+  }
+
+  h += '</div>';
+  out.innerHTML = h;
+  out.style.display = 'block';
+  out.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── MÓDULO 2: HIPOTENSIÓN NEUROAXIAL ────────────────
+function calcHip() {
+  var tas = parseInt(document.getElementById('hip-tas').value) || null;
+  if(!tas){ alert('Ingrese la TAS basal.'); return; }
+  var fc = parseInt(document.getElementById('hip-fc').value) || null;
+  var peso = parseFloat(document.getElementById('hip-peso').value) || null;
+  var tecnica = (document.querySelector('input[name="hip-tecnica"]:checked')||{}).value || 'espinal';
+  var ne = (document.querySelector('input[name="hip-ne"]:checked')||{}).value || 'si';
+
+  var umbral = Math.round(0.8 * tas);
+  var umbralPct = '<strong>'+umbral+' mmHg</strong> (80% de '+tas+' mmHg)';
+  var fcBaja = fc && fc < 70;
+
+  var out = document.getElementById('hrr-hip-out');
+  var h = '<div class="results-grid" style="margin-top:18px">';
+
+  // Umbrales
+  h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="font-size:20px">🎯</div><div class="card-title">Umbrales individualizados</div></div><div class="card-body">';
+  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">';
+  h += '<div style="background:#fef6ec;border:1.5px solid var(--amber2);border-radius:8px;padding:14px 16px;text-align:center"><div style="font-family:Consolas,monospace;font-size:10px;color:var(--amber);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">TAS ALARMA</div><div style="font-family:Georgia,serif;font-size:28px;font-weight:700;color:var(--amber)">'+umbral+' mmHg</div><div style="font-size:11px;color:var(--ink3)">80% de basal ('+tas+' mmHg)</div></div>';
+  h += '<div style="background:#f0f4f9;border:1.5px solid var(--blue);border-radius:8px;padding:14px 16px;text-align:center"><div style="font-family:Consolas,monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">FC ALARMA</div><div style="font-family:Georgia,serif;font-size:28px;font-weight:700;color:var(--blue)">60 lpm</div><div style="font-size:11px;color:var(--ink3)">Bradicardia = reducir/detener</div></div>';
+  h += '</div>';
+  if(fcBaja) h += '<div class="alert-list">'+hA('warning','⚠️','<strong>FC basal baja ('+fc+' lpm):</strong> Fenilefrina puede empeorar bradicardia refleja (RR 2.7×). Preferir <strong>Norepinefrina</strong> si disponible (Liu 2022).')+'</div>';
+  h += evBtn('hip-umbrales',['liu2022','nganKee2018'])+'</div></div>';
+
+  // Vasopresor
+  if(ne === 'si') {
+    h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="font-size:20px">💧</div><div class="card-title">Protocolo — Norepinefrina (1ª línea)</div></div><div class="card-body">';
+    h += '<div style="font-size:12px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Modalidad 1 — Infusión titulada (Ngan Kee 2018)</div>';
+    h += '<div style="background:var(--surface2);border-radius:7px;padding:12px 14px;margin-bottom:10px;font-size:13px">';
+    h += '① Preparar: NE <strong>5 mcg/mL</strong> (p.ej. 5 mg en 1000 mL o 1 mg en 200 mL SF)<br>';
+    h += '② Iniciar <strong>30 mL/h (2.5 mcg/min)</strong> inmediatamente tras inyección intratecal<br>';
+    h += '③ Ajustar cada minuto: rango 0–60 mL/h (0–5 mcg/min) según TAS<br>';
+    h += '④ TAS &gt;120% basal o FC &lt;60 → reducir / detener<br>';
+    h += '⑤ TAS &lt;'+umbral+' mmHg o &lt;90 mmHg → aumentar';
+    h += '</div>';
+    if(peso) {
+      var ne_peso_inicio = Math.round(0.05 * peso * 100) / 100;
+      h += '<div style="font-size:12px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.5px;margin-top:10px;margin-bottom:6px">Modalidad 2 — Por peso (Hasanin 2019)</div>';
+      h += '<div style="background:var(--surface2);border-radius:7px;padding:12px 14px;margin-bottom:10px;font-size:13px">';
+      h += 'Tasa inicial: <strong>'+ne_peso_inicio+' mcg/min</strong> (0.05 mcg/kg/min × '+peso+' kg)<br>';
+      h += '<span style="color:var(--accent)">⚠ Evitar 0.025 mcg/kg/min: reduce hipotensión solo en 57.9% de los casos.</span>';
+      h += '</div>';
+      var bolo = Math.round((13+16)/2);
+      h += '<div style="font-size:12px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.5px;margin-top:10px;margin-bottom:6px">Modalidad 3 — Bolo profiláctico (Xue 2023)</div>';
+      h += '<div style="background:var(--surface2);border-radius:7px;padding:12px 14px;margin-bottom:10px;font-size:13px"><strong>13–16 mcg IV</strong> en el momento de la inyección intratecal — si infusión no disponible.</div>';
+    }
+    h += hA('ok','🧪','<strong>Seguridad fetal:</strong> El pH cordonal es equivalente entre NE y fenilefrina — ninguno causa acidosis fetal adicional (Liu 2022).');
+    h += evBtn('hip-ne',['nganKee2018','hasanin2019','xue2023','liu2022'])+'</div></div>';
+  } else {
+    h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="font-size:20px">💉</div><div class="card-title">Protocolo — Fenilefrina (alternativa)</div></div><div class="card-body">';
+    if(peso) {
+      var ed50 = Math.round(0.31 * peso * 100)/100;
+      var ed90 = Math.round(0.54 * peso * 100)/100;
+      h += '<div style="background:var(--surface2);border-radius:7px;padding:12px 14px;margin-bottom:12px;font-size:13px">';
+      h += 'Infusión continua: rango orientativo 0.25–0.5 mcg/kg/min';
+      if(tecnica === 'cse') {
+        h += '<br><br><strong>Solo CSE (bupivacaína hiperbárica 10 mg + sufentanilo 5 mcg IT):</strong><br>';
+        h += 'ED50 = <strong>'+ed50+' mcg/min</strong> · ED90 = <strong>'+ed90+' mcg/min</strong>';
+      }
+      h += '</div>';
+      if(tecnica === 'cse') h += hA('warning','⚠️','Los valores ED50/ED90 son válidos SOLO para esta técnica CSE específica (Xiao 2020). No extrapolar a espinal simple ni a diferentes dosis de bupivacaína.');
+    }
+    if(fcBaja) h += hA('danger','🚨','FC basal '+fc+' lpm: fenilefrina aumenta riesgo de bradicardia refleja. Si NE está disponible en otro recurso del centro, preferir NE.');
+    h += evBtn('hip-pe',['xiao2020','liu2022'])+'</div></div>';
+  }
+
+  h += '</div>';
+  out.innerHTML = h;
+  out.style.display = 'block';
+  out.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── MÓDULO 3: ANALGESIA POSTOPERATORIA ──────────────
+function calcAnal() {
+  var ctx = (document.querySelector('input[name="anal-ctx"]:checked')||{}).value || null;
+  if(!ctx){ alert('Seleccione el contexto clínico (embarazo / puerperio).'); return; }
+  var eva = parseInt(document.getElementById('anal-eva').value);
+  if(isNaN(eva)||eva<0||eva>10){ alert('Ingrese el EVA (0–10).'); return; }
+  var lact = (document.querySelector('input[name="anal-lact"]:checked')||{}).value || 'no';
+  var eg = ctx==='embarazo' ? (parseInt(document.getElementById('anal-eg').value)||null) : null;
+  var trimestre = eg==null ? null : (eg<=13?1:eg<=26?2:3);
+
+  var out = document.getElementById('hrr-anal-out');
+  var h = '<div class="results-grid" style="margin-top:18px">';
+
+  if(ctx === 'puerperio') {
+    h += '<div class="result-card full"><div class="card-header" style="background:#f0f7f3"><div class="card-icon" style="font-size:20px">✅</div><div class="card-title" style="color:var(--green)">Puerperio — AINEs son PRIMERA LÍNEA</div></div><div class="card-body">';
+    h += '<div style="background:#f0f7f3;border:1.5px solid var(--green2);border-radius:8px;padding:14px 16px;margin-bottom:12px">';
+    h += '<div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Sin feto. La inversión farmacológica del puerperio activa los AINEs como 1ª línea.</div>';
+    h += '<div style="font-size:13px;line-height:1.7">';
+    h += '① <strong>Paracetamol</strong> 1 g c/6h oral/IV (todos los casos EVA &gt;0)<br>';
+    h += '② <strong>Ibuprofeno</strong> 400–600 mg c/8h oral — RR 1.91 vs placebo para dolor perineal (Wuytack 2021)<br>';
+    h += '③ <strong>Ketoprofeno</strong> u otro AINE si ibuprofeno no disponible<br>';
+    if(eva >= 7) h += '④ EVA '+eva+'/10 → considerar <strong>tramadol 50–100 mg c/6h</strong> como tercer escalón';
+    h += '</div></div>';
+    if(lact === 'si') h += '<div class="alert-list">'+hA('warning','🤱','<strong>Lactancia activa:</strong> Los RCTs Cochrane de AINEs posparto excluyeron mujeres en lactancia (Wuytack 2021; Deussen 2020). La recomendación de AINEs como primera línea NO es directamente extrapolable. Verificar compatibilidad con LactMed o Lactancia.org caso a caso.')+'</div>';
+    h += evBtn('anal-puer',['wuytack2021','deussen2020','marhofer2021']);
+    h += '</div></div>';
+
+  } else {
+    // EMBARAZO ACTIVO
+    if(!eg) {
+      h += '<div class="result-card full"><div class="card-body">'+hA('warning','⚠️','Ingrese la semana gestacional para calcular el trimestre y la disponibilidad de AINEs.')+'</div></div>';
+    } else {
+      var color = trimestre===1?'amarillo':(trimestre===2?'verde':'rojo');
+      var trimTxt = ['','1°','2°','3°'][trimestre]+' trimestre (SG '+eg+')';
+      h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="font-size:20px">🤰</div><div class="card-title">Analgesia — '+trimTxt+'</div></div><div class="card-body">';
+
+      // Paracetamol - siempre seguro
+      h += '<div class="drug-section"><div class="drug-section-title safe">① PRIMERA LÍNEA — TODOS LOS TRIMESTRES</div>';
+      h += '<div style="background:#f0f7f3;border-radius:6px;padding:12px 14px;font-size:13px"><strong>Paracetamol 1 g c/6h</strong> oral/IV · Máximo 4 g/día<br><small style="color:var(--ink3)">No aumenta parto prematuro (RR 0.97; Castro 2022). La señal neuroconductual con exposición prolongada no aplica a uso quirúrgico agudo (Patel 2022).</small></div></div>';
+
+      // AINEs por trimestre
+      h += '<div class="drug-section" style="margin-top:12px"><div class="drug-section-title '+(trimestre===3?'danger':(trimestre===2?'warning':'danger'))+'">② AINEs — '+trimTxt+'</div>';
+      if(trimestre === 1) {
+        h += '<div class="alert-list">'+hA('warning','⚠️','1° trimestre: Riesgo de aborto espontáneo no descartado. Evitar AINEs si paracetamol es suficiente. Si el dolor no es controlable con paracetamol, uso puntual por el menor tiempo posible.')+'</div>';
+      } else if(trimestre === 2 && eg <= 26) {
+        h += '<div class="alert-list">'+hA('warning','🟡','SG '+eg+': AINEs uso puntual (&lt;48–72h) aparentemente seguro. ');
+        if(eg >= 20) h += hA('warning','📋','SG ≥20: añadir banner FDA sobre riesgo de oligohidramnios con uso &gt;48h (RR 5.1; Dathe 2022). Si uso &gt;pocos días: monitoreo Doppler ductus arteriosus + ecografía líquido amniótico.');
+        h += '</div>';
+      } else if(trimestre === 3 || eg >= 27) {
+        h += '<div class="alert-list">'+hA('danger','🚫','<strong>AINEs BLOQUEADOS — SG ≥27 sem.</strong> Cierre prematuro del ductus arteriosus (Dathe 2022). Metamizol (dipirona) incluido en esta restricción. NO usar en ninguna dosis.')+'</div>';
+      }
+      h += '</div>';
+
+      // Opioides
+      h += '<div class="drug-section" style="margin-top:12px"><div class="drug-section-title warning">③ OPIOIDES — Segunda línea si paracetamol insuficiente</div>';
+      h += '<div style="background:#fef6ec;border-radius:6px;padding:12px 14px;font-size:13px"><strong>Tramadol</strong> o <strong>Buprenorfina</strong> — opciones preferentes<br><span style="color:var(--accent);font-weight:600">⛔ Petidina (meperidina): CONTRAINDICADA</span><br><small style="color:var(--ink3)">Norpetidina es neurotóxica, alta transferencia placentaria, riesgo Apgar bajo y convulsiones neonatales (Marhofer 2021).</small></div></div>';
+
+      if(eg < 24) h += '<div class="alert-list" style="margin-top:10px">'+hA('info','📊','<strong>Nota evidencia:</strong> No existen RCTs de analgesia en cirugía no obstétrica durante el embarazo. Toda recomendación es extrapolación de guías de anestesia obstétrica y farmacología materno-fetal (ACOG 775).')+'</div>';
+      h += evBtn('anal-emb',['marhofer2021','dathe2022','patel2022','castro2022','acog775']);
+      h += '</div></div>';
+    }
+  }
+
+  h += '</div>';
+  out.innerHTML = h;
+  out.style.display = 'block';
+  out.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── MÓDULO 4: PDPH ───────────────────────────────────
+function calcPDPH() {
+  var eva = parseInt(document.getElementById('pdph-eva').value);
+  if(isNaN(eva)||eva<0||eva>10){ alert('Ingrese EVA (0–10).'); return; }
+  var horas = parseInt(document.getElementById('pdph-h').value);
+  var avd = (document.querySelector('input[name="pdph-avd"]:checked')||{}).value || null;
+  var aguja = (document.querySelector('input[name="pdph-aguja"]:checked')||{}).value || 'raq';
+  var rf1=document.getElementById('pdph-rf1').checked, rf2=document.getElementById('pdph-rf2').checked;
+  var rf3=document.getElementById('pdph-rf3').checked, rf4=document.getElementById('pdph-rf4').checked;
+  var redflags = rf1||rf2||rf3||rf4;
+
+  var out = document.getElementById('hrr-pdph-out');
+  var h = '<div class="results-grid" style="margin-top:18px">';
+
+  if(redflags) {
+    h += '<div class="result-card full"><div class="card-header" style="background:#fdf2f0"><div class="card-icon" style="font-size:22px">🚨</div><div class="card-title" style="color:var(--accent)">RED FLAG detectada — Neuroimagen urgente</div></div><div class="card-body"><div class="alert-list">';
+    h += hA('danger','🚨','<strong>DETENER evaluación de PDPH.</strong> Los red flags presentes obligan a descartar causa secundaria ANTES de tratar como PDPH.');
+    if(rf1) h += hA('danger','🧠','Déficit neurológico / alteraciones visuales → descartar Hemorragia Subdural, Trombosis Venosa Cerebral (TVC), Meningitis');
+    if(rf2) h += hA('danger','⚡','Convulsiones / deterioro de conciencia → descartar Hemorragia intracraneal, Eclampsia tardía');
+    if(rf3) h += hA('danger','🔴','Cefalea «en trueno» o cambio de carácter → descartar HSA, TVC');
+    if(rf4) h += hA('danger','🦠','Fiebre + cefalea → descartar Meningitis, Absceso epidural');
+    h += hA('info','📋','Solicitar RM cerebral + venografía RM (si sospecha TVC). No atribuir a PDPH hasta descartar causas secundarias. Neurocirugía / Neurología urgente si hallazgo positivo.');
+    h += '</div>'+evBtn('pdph-rf',['thon2024','uppal2024'])+'</div></div>';
+  }
+
+  // Diagnóstico
+  var fuera5d = !isNaN(horas) && horas > 120;
+  h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="font-size:20px">🩹</div><div class="card-title">Evaluación PDPH</div></div><div class="card-body"><div class="alert-list">';
+  if(fuera5d) h += hA('warning','⏰','Horas desde punción: '+horas+'h (&gt;5 días). Fuera del criterio diagnóstico ICHD-3 para PDPH. Considerar diagnóstico alternativo (cefalea crónica post-punción, TVC, PRES).');
+  h += hA('info','📍','<strong>Cefalea postural:</strong> empeora en bipedestación, mejora en decúbito dentro de 15 min — signo cardinal. EVA actual: '+eva+'/10.');
+  if(aguja==='tuohy') h += hA('warning','⚠️','Puntura accidental con Tuohy (ADP): la incidencia de PDPH es ~52–88% y los síntomas son típicamente más graves. EBP tiene mayor tasa de éxito pero también mayor probabilidad de necesitar 2do parche.');
+  h += '</div></div></div>';
+
+  // Manejo por severidad
+  var severa = avd === 'si' || eva >= 7;
+  h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="font-size:20px">'+(severa?'⚡':'💊')+'</div><div class="card-title">'+(severa?'Cefalea incapacitante':'Cefalea tolerable')+' — Escalera de tratamiento</div></div><div class="card-body">';
+  h += '<div style="font-size:13px;line-height:2">';
+  h += '<strong>Paso 1 — Conservador:</strong> Hidratación oral adecuada + paracetamol 1g c/6h + ibuprofeno 600–800mg c/8h + cafeína 300mg c/8h (máx 1200 mg/día)<br>';
+  if(severa) {
+    h += '<strong>Paso 2 — Farmacológico:</strong> Gabapentina 300 mg c/6h si persiste incapacitante<br>';
+    if(!isNaN(horas) && horas < 48) {
+      h += '<div style="background:#fef6ec;border:1.5px solid var(--amber2);border-radius:7px;padding:11px 14px;margin:8px 0">';
+      h += '⚠ <strong>EBP AÚN PRECOZ</strong> ('+horas+'h &lt;48h): Mayor probabilidad de necesitar segundo parche si se hace ahora. ';
+      h += 'Continuar con Paso 1–2 si tolerable. Reevaluar a las 48h.';
+      h += '</div>';
+    } else {
+      h += '<div style="background:#f0f7f3;border:1.5px solid var(--green2);border-radius:7px;padding:11px 14px;margin:8px 0">';
+      h += '<strong>Paso 3 — EBP indicado:</strong> '+(isNaN(horas)?'':horas+'h ≥48h — ')+'Ventana óptima. <strong>20 mL</strong> de sangre autóloga, mismo espacio o uno abajo, inyección lenta e incremental. Detener ante dolor lumbar intenso o parestesias.<br>';
+      h += '<small style="color:var(--ink3)">20 mL = volumen óptimo en el único RCT multicéntrico obstétrico (Paech 2011, PMID 21596867).</small>';
+      h += '</div>';
+    }
+    if(aguja==='tuohy') h += hA('warning','ℹ️','<strong>GONB (Bloqueo Nervio Occipital Mayor):</strong> La recomendación condicional de Uppal 2024 se basa en datos con agujas ≤22G. Para ADP con Tuohy (17–18G), la evidencia es incierta. Si EBP no disponible o rechazado, puede intentarse como puente.');
+  }
+  h += '</div>';
+  h += hA('warning','📋','<strong>No dar alta sin:</strong> información escrita sobre secuelas posibles (cefalea crónica, TVC, NC paralíticas, depresión, PTSD) y plan de contacto hasta resolución completa.');
+  h += evBtn('pdph-main',['thon2024','uppal2024','uppal2023','paech2011']);
+  h += '</div></div>';
+
+  h += '</div>';
+  out.innerHTML = h;
+  out.style.display = 'block';
+  out.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── MÓDULO 5: MONITOREO FETAL ───────────────────────
+function calcFetal() {
+  var eg = parseInt(document.getElementById('fetal-eg').value) || null;
+  if(!eg){ alert('Ingrese la edad gestacional.'); return; }
+  var equipo = (document.querySelector('input[name="fetal-equipo"]:checked')||{}).value || 'no';
+  var cx = (document.querySelector('input[name="fetal-cx"]:checked')||{}).value || 'abierta';
+  var anest = (document.querySelector('input[name="fetal-anest"]:checked')||{}).value || 'ag';
+  var ctg = (document.querySelector('input[name="fetal-ctg"]:checked')||{}).value || 'no';
+
+  var elegible = eg >= 22;
+  var out = document.getElementById('hrr-fetal-out');
+  var h = '<div class="results-grid" style="margin-top:18px">';
+
+  // Elegibilidad
+  h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="font-size:20px">👶</div><div class="card-title">Elegibilidad para monitoreo continuo</div></div><div class="card-body"><div class="alert-list">';
+  if(!elegible) {
+    h += hA('info','📋','<strong>EG '+eg+' sem (&lt;22 sem):</strong> Monitoreo continuo CTG no indicado. Auscultación de FCF pre y postoperatoria. Sin evidencia de intervención fetal intraoperatoria con este umbral.');
+  } else {
+    h += hA('ok','✅','<strong>EG '+eg+' sem (≥22 sem):</strong> Umbral para considerar monitoreo continuo CTG intraoperatorio.');
+    if(equipo==='no') h += hA('danger','🚫','<strong>SIN profesional entrenado en FHR intraop. disponible → No iniciar monitoreo continuo.</strong> El monitoreo sin equipo capaz de responder es un riesgo, no una seguridad (ACOG 2017). Anotar en ficha la limitación de recursos.');
+    else h += hA('ok','✅','Profesional entrenado + equipo obstétrico-neonatal disponible → Monitoreo continuo indicado.');
+    if(cx==='lap') h += hA('warning','🔧','<strong>Laparoscopía:</strong> Presión de neumoperitoneo ≤<strong>12 mmHg</strong> (Ravindra 2018). Capnografía con PetCO₂ 32–35 mmHg. El neumoperitoneo puede comprometer la señal CTG por desplazamiento uterino.');
+  }
+  h += '</div>'+evBtn('fetal-elegib',['po2019','ravindra2018'])+'</div></div>';
+
+  // Interpretación CTG
+  if(elegible && equipo==='si') {
+    h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="font-size:20px">📈</div><div class="card-title">Interpretación del CTG intraoperatorio</div></div><div class="card-body"><div class="alert-list">';
+    if(ctg==='silente') {
+      h += hA('warning','⚠️','<strong>CTG silente / variabilidad mínima bajo AG:</strong> Efecto farmacológico probable (opioides, benzodiacepinas, anestésicos volátiles). NO actuar sin correlacionar con HD materna (Bock 2012).');
+      h += hA('info','🩺','Correlacionar con: TAS materna, FC materna, saturación, temperatura. Si HD materna estable → monitorear, no intervenir.');
+      h += hA('info','📋','La variabilidad mínima bajo anestesia es esperada y no equivale a hipoxia fetal (Bock 2012, PMID 23223840).');
+    } else if(ctg==='nontranq') {
+      h += hA('danger','🚨','<strong>Patrón Cat. II–III NICHD — Iniciar resucitación intrauterina INMEDIATA:</strong>');
+      h += hA('warning','1️⃣','Desplazamiento uterino izquierdo manual (DUI)');
+      h += hA('warning','2️⃣','Bolus IV cristaloide 500 mL rápido');
+      h += hA('warning','3️⃣','Vasopresores (NE o fenilefrina) si hipotensión materna');
+      h += hA('warning','4️⃣','Optimizar FiO₂ → FiO₂ 1.0');
+      h += hA('warning','5️⃣','Corregir hipercarbia, hipotermia');
+      h += hA('info','⚖️','Cesárea intraoperatoria SOLO si patrón no tranquilizador persiste tras resucitación completa + consenso multidisciplinario. La serie Po 2019 (41 casos): <strong>0 cesáreas intraoperatorias necesarias.</strong>');
+    } else {
+      h += hA('ok','✅','CTG no iniciado o tranquilizador. Mantener monitoreo continuo según disponibilidad de equipo.');
+    }
+    h += '</div>'+evBtn('fetal-ctg',['po2019','bock2012'])+'</div></div>';
+  }
+
+  // Postoperatorio
+  h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="font-size:20px">⏰</div><div class="card-title">Monitoreo postoperatorio — período de mayor riesgo</div></div><div class="card-body"><div class="alert-list">';
+  h += hA('warning','🕐','<strong>Primeras 48h postoperatorias:</strong> período de MAYOR riesgo fetal. En la serie Po 2019, las 2 cesáreas de emergencia necesarias ocurrieron en este período, no durante la cirugía.');
+  h += hA('info','📋','Monitoreo continuo de FCF primeras 48h si EG ≥22 sem y equipo disponible. Incidencia FHR no tranquilizadora postop: 4.9% de los casos.');
+  if(eg >= 24) h += hA('info','🏥','Notificar a Obstetricia antes del egreso de URPA. Plan de monitoreo en sala hasta 48h.');
+  h += '</div>'+evBtn('fetal-postop',['po2019','acog775'])+'</div></div>';
+
+  h += '</div>';
+  out.innerHTML = h;
+  out.style.display = 'block';
+  out.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── MÓDULO 6: VAD OBSTÉTRICA ─────────────────────────
+function calcVAD() {
+  var urg = (document.querySelector('input[name="vad-urg"]:checked')||{}).value || 'cat4';
+  var fase = (document.querySelector('input[name="vad-fase"]:checked')||{}).value || 'pre';
+  var vl = (document.querySelector('input[name="vad-vl"]:checked')||{}).value || 'si';
+  var nPred = ['vad-mall','vad-dtm','vad-obes','vad-prec','vad-edema','vad-cx-prev'].filter(function(id){ return document.getElementById(id).checked; }).length;
+  var vldisabel = nPred;
+
+  var out = document.getElementById('hrr-vad-out');
+  var h = '<div class="results-grid" style="margin-top:18px">';
+
+  if(!vl) {
+    h += '<div class="result-card full"><div class="card-body">'+hA('danger','🚨','<strong>Videolaringoscopio NO disponible:</strong> Riesgo crítico. En obstetricia la intubación fallida es ~1:390 (Kinsella 2015). Sin VL disponible, el algoritmo de rescate VAD obstétrico no puede seguirse. Escalar a supervisor / conseguir equipo antes de inducir electivamente.')+'</div></div>';
+  }
+
+  // Pre-inducción
+  if(fase === 'pre') {
+    h += '<div class="result-card full"><div class="card-header"><div class="card-icon" style="font-size:20px">📋</div><div class="card-title">Plan pre-inducción — Evaluar antes de inducir</div></div><div class="card-body"><div class="alert-list">';
+    h += hA('info','🔍','<strong>Predictores VAD presentes: '+nPred+'/6.</strong> '+(nPred>=3?'<span style="color:var(--accent);font-weight:700">ALTO riesgo de VAD</span>':nPred>=1?'Riesgo intermedio — tener plan B preparado':'Sin predictores actuales — VAD inesperada igual es posible (1:390).')+'');
+    h += hA('ok','✅','<strong>Decisión despertar vs. continuar con SAD</strong>: tomar AHORA, antes de inducir. En Cat.1 (urgencia inmediata) → priorizar continuar con SAD. En Cat.4 (electiva) → despertar si VAD no resuelta.');
+    h += hA('info','💉','<strong>RSI actualizada OAA/DAS 2015:</strong> VL disponible en mano como Plan A si VAD anticipada. La ventilación con mascarilla durante RSI ya NO está contraindicada de rutina.');
+    h += hA('warning','⚠️','Cricoides: aplicar presión suave. Liberar si impide la visión laringoscópica o ventilación (Delgado 2020).');
+    h += hA('info','🏥','Verificar: VL + bougie + broncoscopio flexible + SAD 2ª gen + cricotirotomía kit → TODO en sala ANTES de inducir.');
+    h += '</div>'+evBtn('vad-pre',['oaadas2015','howle2021','delgado2020','kinsella2015'])+'</div></div>';
+  } else {
+    // RESCATE ACTIVO — RSI fallida
+    h += '<div class="result-card full"><div class="card-header" style="background:#fdf2f0"><div class="card-icon" style="font-size:22px">🚨</div><div class="card-title" style="color:var(--accent)">RSI FALLIDA — Algoritmo de rescate activo</div></div><div class="card-body">';
+    h += '<div style="font-size:12px;color:var(--ink3);margin-bottom:12px">OAA/DAS 2015 · Maxwell 2024 · Metodiev 2023 · Delgado 2020</div>';
+
+    var steps = [
+      ['Plan B — VL (si no se usó ya)', vl==='si'?'<strong>Videolaringoscopio</strong>: segundo intento. Ajustar posición (ramping), remover presión cricoidea si obstruye. Máximo 3 intentos laringoscópicos en total.':'<span style="color:var(--accent)">⚠ VL NO disponible — escalar directamente al Plan C.</span>', 'warning'],
+      ['Plan C — VL + Broncoscopio flexible', '<strong>VL + broncoscopio flexible</strong>: tiempo 24±10s vs 86±35s con Eschmann; hipoxemia 0% vs 71% (Maxwell 2024, simulación n=28). Insertar tubo sobre broncoscopio guiado por VL. <em>Advertencia: datos de simulación con residentes, no pacientes reales.</em>', 'warning'],
+      ['Plan D — SAD 2ª generación', '<strong>SAD 2ª generación</strong> (LMA ProSeal, i-gel, Supreme) como rescate de oxigenación. Estándar OAA/DAS. Ejecutar decisión provisional (despertar vs. continuar) tomada en el paso pre-inducción.', 'warning'],
+      ['Plan E — CICO → FONA', '<strong>No oxigenación + no intubación (CICO):</strong> acceso cricotiroideo INMEDIATO. Scalpel-finger-bougie o kit comercial. No demorar. Liberar cricoides si está presente (Delgado 2020, PMID 33456951).', 'danger']
+    ];
+
+    h += '<div class="cl-list">';
+    steps.forEach(function(s, i) {
+      h += '<div class="cl-item '+(s[2]==='danger'?'required':'recommended')+'"><div class="cl-dot"></div><div><strong>'+(i+1)+'. '+s[0]+'</strong><br><span style="font-size:12px;color:var(--ink2)">'+s[1]+'</span></div></div>';
+    });
+    h += '</div>';
+
+    var cat1 = urg==='cat1';
+    h += '<div style="margin-top:12px">'+hA(cat1?'danger':'warning', cat1?'🚨':'⚖️', '<strong>Urgencia '+(urg==='cat1'?'Cat.1 — inmediata':'Cat.2–4')+' → decisión SAD/despertar:</strong> '+(cat1?'Continuar con SAD si oxigenación recuperada — feto en riesgo inmediato. No despertar si ello también pone en riesgo fetal.':'Si oxigenación recuperada con SAD → evaluar despertar vs. continuar según riesgo materno-fetal. Multidisciplinario.')+'')+'</div>';
+    h += evBtn('vad-rescue',['oaadas2015','maxwell2024','metodiev2023','delgado2020','howle2021'])+'</div></div>';
+  }
+
+  h += '</div>';
+  out.innerHTML = h;
+  out.style.display = 'block';
+  out.scrollIntoView({behavior:'smooth',block:'start'});
+}
 
 // ══════════════════════════════════════
 // PROTECCIÓN ANTI-COPIA Y ANTI-INGENIERÍA
@@ -5214,13 +6210,13 @@ function descargarApp(){
     try {
       var blob = new Blob([html], {type:'text/html;charset=utf-8'});
       var a = document.createElement('a');
-      a.href = URL.createObjectURL(blob); a.download = 'ETHOS-OB-v2.7.html';
+      a.href = URL.createObjectURL(blob); a.download = 'ETHOS-OB-v2.8.html';
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
-    } catch(e){ var l=document.createElement('a'); l.href='index.html'; l.download='ETHOS-OB-v2.7.html'; l.click(); }
+    } catch(e){ var l=document.createElement('a'); l.href='index.html'; l.download='ETHOS-OB-v2.8.html'; l.click(); }
   }
   fetch(location.href, {cache:'no-store'}).then(function(r){ return r.text(); }).then(bajar)
-    .catch(function(){ var l=document.createElement('a'); l.href='index.html'; l.download='ETHOS-OB-v2.7.html'; l.click(); });
+    .catch(function(){ var l=document.createElement('a'); l.href='index.html'; l.download='ETHOS-OB-v2.8.html'; l.click(); });
 }
 
 function instalarApp(){
